@@ -3,22 +3,22 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Boing-Boing | Admin Area</title>
+    <title>Boing-Boing | Customer Area</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
     <link rel="icon" href="{{asset('assets/img/icon.ico')}}" type="image/x-icon" />
 
-    @include('AdminArea.includes.css')
+    @include('CustomerArea.includes.css')
 
 </head>
 
 <body>
     <div class="wrapper">
         <!-- Navbar -->
-        @include('AdminArea.includes.navbar')
+        @include('CustomerArea.includes.navbar')
         <!-- End Navbar -->
 
         <!-- Sidebar -->
-        @include('AdminArea.includes.sidebar')
+        @include('CustomerArea.includes.sidebar')
         <!-- End Sidebar -->
 
         <div class="main-panel">
@@ -35,7 +35,7 @@
     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
         @csrf
     </form>
-    @include('AdminArea.includes.js')
+    @include('CustomerArea.includes.js')
 </body>
 
 </html>

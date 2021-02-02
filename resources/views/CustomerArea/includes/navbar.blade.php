@@ -26,7 +26,7 @@
     <nav class="navbar navbar-header navbar-expand-lg">
         <div class="container-fluid">
             <div class="collapse" id="search-nav">
-                <h3 class="text-white">Admin Area</h3>
+                <h3 class="text-white">Customer Area</h3>
             </div>
             <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
                 <li class="nav-item toggle-nav-search hidden-caret">

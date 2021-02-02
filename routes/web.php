@@ -14,9 +14,33 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+|
+| Here is the Admin routes
+|
+*/
+Route::prefix('/admin')->namespace('Admin')->group(function () {
+
+    Route::get('/', 'HomeController@index')->name('admin.index');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Customer Routes
+|--------------------------------------------------------------------------
+|
+| Here is the Customer routes
+|
+*/
+Route::prefix('/customer')->namespace('Customer')->group(function () {
+
+    Route::get('/', 'HomeController@index')->name('customer.index');
+});

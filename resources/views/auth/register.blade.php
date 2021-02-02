@@ -29,9 +29,9 @@
                 @enderror
             </div>
             <div class="form-group form-floating-label">
-                <input id="passwordsignin" name="passwordsignin" type="password"
+                <input id="password" name="password" type="password"
                     class="form-control input-border-bottom @error('password') is-invalid @enderror" required>
-                <label for="passwordsignin" class="placeholder">Password</label>
+                <label for="password" class="placeholder">Password</label>
                 <div class="show-password">
                     <i class="flaticon-interface"></i>
                 </div>
@@ -42,12 +42,17 @@
                 @enderror
             </div>
             <div class="form-group form-floating-label">
-                <input id="confirmpassword" name="confirmpassword" type="password"
+                <input id="password_confirmation" name="password_confirmation" type="password"
                     class="form-control input-border-bottom" required>
-                <label for="confirmpassword" class="placeholder">Confirm Password</label>
+                <label for="password_confirmation" class="placeholder">Confirm Password</label>
                 <div class="show-password">
                     <i class="flaticon-interface"></i>
                 </div>
+                @error('password_confirmation')
+                <span class="invalid-feedback" role="alert" style="font-size:14px;">
+                    {{ $message }}
+                </span>
+                @enderror
             </div>
             <div class="form-action">
                 <button type="submit" class="btn btn-primary btn-rounded btn-login">Sign Up</button>
