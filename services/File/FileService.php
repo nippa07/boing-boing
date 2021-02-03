@@ -23,7 +23,7 @@ class FileService
             //Upload File
             $file->move(public_path($this->upload_path) . '/', $file_name);
 
-            return ['status' => 1, 'data' => $file_name];
+            return ['status' => 1, 'data' => $file_name, 'type' => $file->getClientOriginalExtension()];
         }
         return ['status' => 0, 'data' => ''];
     }

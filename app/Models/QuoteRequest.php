@@ -30,4 +30,9 @@ class QuoteRequest extends Model
         'quantity',
         'details'
     ];
+
+    public function quote_request_artwork()
+    {
+        return $this->hasMany('App\Models\QuoteRequestArtwork', 'quote_request_id');
+    }
 }

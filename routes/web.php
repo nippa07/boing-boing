@@ -44,6 +44,12 @@ Route::prefix('/')->namespace('PublicArea')->group(function () {
 Route::prefix('/admin')->namespace('AdminArea')->group(function () {
 
     Route::get('/', 'HomeController@index')->name('admin.index');
+
+    Route::prefix('/custom/offer')->group(function () {
+        Route::get('/', 'CustomOfferController@all')->name('admin.custom.offer.all');
+        Route::get('/view/{id}', 'CustomOfferController@view')->name('admin.custom.offer.view');
+        Route::get('/delete/{id}', 'CustomOfferController@delete')->name('admin.custom.offer.delete');
+    });
 });
 
 /*

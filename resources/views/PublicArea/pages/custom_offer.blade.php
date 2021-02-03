@@ -31,7 +31,7 @@
                                 <div class="form-group">
                                     <label for="name">Email<sup class="text-danger">*</sup></label>
                                     <input id="email" type="email" name="email"
-                                        class="form-control form-control-alternative" oninput="checkEmail()" required>
+                                        class="form-control form-control-alternative" required>
                                 </div>
                             </div>
                             <div class="col-lg-6">

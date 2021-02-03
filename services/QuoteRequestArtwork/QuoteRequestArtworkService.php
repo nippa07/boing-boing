@@ -66,7 +66,9 @@ class QuoteRequestArtworkService
         $request['quote_request_id'] = $quote_request->id;
         if ($request->has('artwork')) {
             foreach ($request->file('artwork') as $doc) {
-                $request['name'] = FileFacade::up($doc)['data'];
+                $file_uploaded = FileFacade::up($doc);
+                $request['name'] = $file_uploaded['data'];
+                $request['type'] = $file_uploaded['type'];
                 $this->create($request->all());
             }
         }

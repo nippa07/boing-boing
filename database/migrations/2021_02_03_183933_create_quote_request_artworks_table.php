@@ -16,6 +16,7 @@ class CreateQuoteRequestArtworksTable extends Migration
         Schema::create('quote_request_artworks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('type');
             $table->unsignedBigInteger('quote_request_id')->nullable();
             $table->foreign('quote_request_id')
                 ->references('id')

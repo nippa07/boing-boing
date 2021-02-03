@@ -16,6 +16,12 @@ class QuoteRequestArtwork extends Model
      */
     protected $fillable = [
         'name',
+        'type',
         'quote_request_id'
     ];
+
+    public function quote_request()
+    {
+        return $this->belongsTo('App\Models\QuoteRequest');
+    }
 }
