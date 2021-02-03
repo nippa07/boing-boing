@@ -21,13 +21,27 @@ Auth::routes();
 
 /*
 |--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+|
+| Here is the Public routes
+|
+*/
+Route::prefix('/')->namespace('PublicArea')->group(function () {
+
+    Route::get('/custom/offer', 'HomeController@customOffer')->name('public.custom.offer');
+    Route::post('/custom/offer', 'HomeController@storeCustomOffer')->name('public.store.custom.offer');
+});
+
+/*
+|--------------------------------------------------------------------------
 | Admin Routes
 |--------------------------------------------------------------------------
 |
 | Here is the Admin routes
 |
 */
-Route::prefix('/admin')->namespace('Admin')->group(function () {
+Route::prefix('/admin')->namespace('AdminArea')->group(function () {
 
     Route::get('/', 'HomeController@index')->name('admin.index');
 });
@@ -40,7 +54,7 @@ Route::prefix('/admin')->namespace('Admin')->group(function () {
 | Here is the Customer routes
 |
 */
-Route::prefix('/customer')->namespace('Customer')->group(function () {
+Route::prefix('/customer')->namespace('CustomerArea')->group(function () {
 
     Route::get('/', 'HomeController@index')->name('customer.index');
 });
