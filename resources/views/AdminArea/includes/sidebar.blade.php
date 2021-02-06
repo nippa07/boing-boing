@@ -16,10 +16,18 @@
                     <h4 class="text-section">Functions</h4>
                 </li>
                 <li class="nav-item
-                    {{in_array($active_url, ['admin.custom.offer.all'])?'active':''}}">
+                    {{in_array($active_url, ['admin.custom.offer.all', 'admin.custom.offer.view'])?'active':''}}">
                     <a href="{{route('admin.custom.offer.all')}}">
                         <i class="fas fa-user"></i>
                         <p>Custom Offer Requests</p>
+                    </a>
+                </li>
+                <li
+                    class="nav-item
+                    {{in_array($active_url, ['admin.offer.quote.all', 'admin.offer.quote.add', 'admin.offer.quote.view', 'admin.offer.quote.edit'])?'active':''}}">
+                    <a href="{{route('admin.offer.quote.all')}}">
+                        <i class="fas fa-users"></i>
+                        <p>Offer Quotes</p>
                     </a>
                 </li>
             </ul>
