@@ -24,6 +24,12 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\QuoteStatusMailEvent' => [
             'App\Listeners\QuoteStatusMailListener',
         ],
+        'App\Events\OrderMailEvent' => [
+            'App\Listeners\OrderMailListener',
+        ],
+        'App\Events\SendUserDetailsMailEvent' => [
+            'App\Listeners\SendUserDetailsMailListener',
+        ],
     ];
 
     /**

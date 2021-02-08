@@ -37,6 +37,9 @@ Route::prefix('/')->namespace('PublicArea')->group(function () {
 
     Route::get('/thank-you', 'QuoteController@thankYou')->name('public.quote.thankYou');
     Route::get('/checkout/{id?}', 'QuoteController@checkout')->name('public.quote.checkout');
+    Route::post('/checkout', 'QuoteController@saveCheckout')->name('public.quote.checkout.save');
+
+    Route::get('/receipt/{id}', 'QuoteController@receipt')->name('public.order.receipt');
 });
 
 /*
