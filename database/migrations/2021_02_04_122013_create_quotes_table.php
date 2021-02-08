@@ -21,7 +21,6 @@ class CreateQuotesTable extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('company')->nullable();
-            $table->string('vat_number')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('country')->nullable();

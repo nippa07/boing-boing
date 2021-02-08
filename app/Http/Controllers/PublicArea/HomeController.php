@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\PublicArea;
 
 use App\Http\Controllers\Controller;
-use App\Models\Quote;
 use Illuminate\Http\Request;
-use services\Facade\QuoteFacade;
 use services\Facade\QuoteRequestFacade;
 
 class HomeController extends Controller
@@ -20,17 +18,5 @@ class HomeController extends Controller
         QuoteRequestFacade::make($request);
 
         return redirect()->back()->with('alert-success', "Your custom offer request was submitted successfully!");
-    }
-
-    public function quoteAccept($id)
-    {
-        QuoteFacade::changeQuoteStatus($id, Quote::STATUS['ACCEPTED']);
-    }
-
-    public function quoteDecline($id)
-    {
-        QuoteFacade::changeQuoteStatus($id, Quote::STATUS['DECLINED']);
-
-        return redirect(route(''));
     }
 }

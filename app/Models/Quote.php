@@ -22,7 +22,6 @@ class Quote extends Model
         'email',
         'phone',
         'company',
-        'vat_number',
         'address',
         'city',
         'country',

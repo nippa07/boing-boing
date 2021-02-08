@@ -44,6 +44,7 @@ class QuoteController extends ParentController
 
     public function view($id)
     {
+        $response['countries'] = CountryState::getCountries();
         $response['quote'] = QuoteFacade::get($id);
 
         return view('AdminArea.pages.quotes.view')->with($response);

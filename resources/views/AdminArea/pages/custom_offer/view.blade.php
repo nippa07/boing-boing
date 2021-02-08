@@ -22,6 +22,7 @@
             <a href="javscript:void(0)">View Custom Offer Request</a>
         </li>
     </ul>
+
 </div>
 @endsection
 
@@ -31,6 +32,12 @@
         <div class="card">
             <div class="card-body">
                 <div class="row justify-content-center">
+                    <div class="col-lg-12 text-right">
+                        <div class="form-group">
+                            <a class="btn btn-primary" href="{{route('admin.offer.quote.add', $custom_offer->id)}}">Send
+                                Quote</a>
+                        </div>
+                    </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="name">First Name</label>

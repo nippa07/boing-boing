@@ -631,7 +631,7 @@
                                                                             Item</th>
                                                                         <th style="min-width: 90px;">Item price</th>
                                                                         <th style="min-width: 65px;">Quantity</th>
-                                                                        <th style="min-width: 60px;">Tax</th>
+                                                                        <th style="min-width: 60px;">GST</th>
                                                                         <th style="min-width: 80px;">Total</th>
                                                                     </thead>
                                                                     <tbody>
@@ -648,10 +648,12 @@
                                                                                 {{$item->name}} <br>
                                                                                 {{$item->description}}
                                                                             </td>
-                                                                            <td>${{$item->price}}</td>
+                                                                            <td>${{number_format($item->price, 2)}}</td>
                                                                             <td>{{$item->quantity}}</td>
                                                                             <td>10%</td>
-                                                                            <td>${{$item_total[$key]}}</td>
+                                                                            <td>
+                                                                                ${{number_format($item_total[$key], 2)}}
+                                                                            </td>
                                                                         </tr>
                                                                         @endforeach
                                                                         <tr class="item_tr2">
@@ -659,15 +661,15 @@
                                                                                 Sub-Total:
                                                                             </td>
                                                                             <td style="text-align: center">
-                                                                                ${{array_sum($item_total)}}
+                                                                                ${{number_format(array_sum($item_total), 2)}}
                                                                             </td>
                                                                         </tr>
                                                                         <tr class="item_tr2">
                                                                             <td colspan="4" class="item_td">
-                                                                                Tax:
+                                                                                GST:
                                                                             </td>
                                                                             <td style="text-align: center">
-                                                                                ${{array_sum($item_total) * (10/100)}}
+                                                                                ${{number_format(array_sum($item_total) * (10/100), 2)}}
                                                                             </td>
                                                                         </tr>
                                                                         <tr class="item_tr2">
@@ -675,7 +677,7 @@
                                                                                 Total:
                                                                             </td>
                                                                             <td style="text-align: center">
-                                                                                ${{array_sum($item_total) + (array_sum($item_total) * (10/100))}}
+                                                                                ${{number_format(array_sum($item_total) + (array_sum($item_total) * (10/100)), 2)}}
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>

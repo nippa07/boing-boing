@@ -13,7 +13,7 @@
             <i class="flaticon-right-arrow"></i>
         </li>
         <li class="nav-item">
-            <a href="{{route('admin.offer.quote.all')}}">Offer Quotes</a>
+            <a href="{{route('admin.offer.quote.all')}}">View Quotes</a>
         </li>
         <li class="separator">
             <i class="flaticon-right-arrow"></i>
@@ -27,7 +27,7 @@
 
 @section('content')
 <div class="row justify-content-center mt-4">
-    <div class="col-md-9">
+    <div class="col-md-6">
         <div class="card">
             <div class="card-body">
                 <div class="row justify-content-center">
@@ -59,123 +59,95 @@
                                 pattern="[0-9]*" value="{{$quote->phone}}" readonly>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="form-group">
-                            <label for="name">Sticker Size</label>
-                            <input type="number" name="sticker_size" class="form-control form-control-alternative"
-                                placeholder="Size in millimetres (mm)" value="{{$quote->sticker_size}}" readonly>
+                            <label for="name">Company</label>
+                            <input id="company" type="text" name="company" class="form-control form-control-alternative"
+                                value="{{$quote->company}}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="name">Address</label>
+                            <input id="address" type="text" name="address" class="form-control form-control-alternative"
+                                value="{{$quote->address}}" readonly>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="name">Material</label>
-                            <select class="form-control" name="material" id="material" disabled>
-                                <option value="{{\App\Models\QuoteRequest::MATERIAL['GLOSS']}}"
-                                    {{$quote->material == \App\Models\QuoteRequest::MATERIAL['GLOSS'] ? 'selected':''}}>
-                                    Gloss
+                            <label for="name">City</label>
+                            <input id="city" type="text" name="city" class="form-control form-control-alternative"
+                                value="{{$quote->city}}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="name">Postal Code</label>
+                            <input id="postal_code" type="text" name="postal_code"
+                                class="form-control form-control-alternative" value="{{$quote->postal_code}}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="name">Country</label>
+                            <select class="form-control" name="country" id="country" disabled>
+                                <option></option>
+                                @foreach($countries as $sn => $country)
+                                <option value="{{ $sn }}" {{$quote->country == $sn? 'selected':''}}>{{ $country }}
                                 </option>
-                                <option value="{{\App\Models\QuoteRequest::MATERIAL['MATTE']}}"
-                                    {{$quote->material == \App\Models\QuoteRequest::MATERIAL['MATTE'] ? 'selected':''}}>
-                                    Matte</option>
-                                <option value="{{\App\Models\QuoteRequest::MATERIAL['CLEAR']}}"
-                                    {{$quote->material == \App\Models\QuoteRequest::MATERIAL['CLEAR'] ? 'selected':''}}>
-                                    Clear
-                                </option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="name">Sticker Shape</label>
-                            <select class="form-control" name="sticker_shape" id="sticker_shape" disabled>
-                                <option value="{{\App\Models\QuoteRequest::STICKER_SHAPE['SQUARE']}}"
-                                    {{$quote->sticker_shape == \App\Models\QuoteRequest::STICKER_SHAPE['SQUARE'] ? 'selected':''}}>
-                                    Square
+                            <label for="name">State</label>
+                            <select class="form-control" id="state" name="state" disabled>
+                                <option></option>
+                                @foreach($countries as $sn => $state)
+                                <option value="{{ $sn }}" {{$quote->state == $sn? 'selected':''}}>{{ $state }}
                                 </option>
-                                <option value="{{\App\Models\QuoteRequest::STICKER_SHAPE['CIRCLE']}}"
-                                    {{$quote->sticker_shape == \App\Models\QuoteRequest::STICKER_SHAPE['CIRCLE'] ? 'selected':''}}>
-                                    Circle
-                                </option>
-                                <option value="{{\App\Models\QuoteRequest::STICKER_SHAPE['OVAL']}}"
-                                    {{$quote->sticker_shape == \App\Models\QuoteRequest::STICKER_SHAPE['OVAL'] ? 'selected':''}}>
-                                    Oval
-                                </option>
-                                <option value="{{\App\Models\QuoteRequest::STICKER_SHAPE['RECTANGLE']}}"
-                                    {{$quote->sticker_shape == \App\Models\QuoteRequest::STICKER_SHAPE['RECTANGLE'] ? 'selected':''}}>
-                                    Rectangle
-                                </option>
-                                <option value="{{\App\Models\QuoteRequest::STICKER_SHAPE['CUSTOM']}}"
-                                    {{$quote->sticker_shape == \App\Models\QuoteRequest::STICKER_SHAPE['CUSTOM'] ? 'selected':''}}>
-                                    Custom
-                                </option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-12 mt-3">
+                        <hr>
                         <div class="form-group">
-                            <label for="name">Finishing</label>
-                            <select class="form-control" name="finishing" id="finishing" disabled>
-                                <option value="{{\App\Models\QuoteRequest::FINISHING['SHEETS']}}"
-                                    {{$quote->finishing == \App\Models\QuoteRequest::FINISHING['SHEETS'] ? 'selected':''}}>
-                                    Sheets
-                                </option>
-                                <option value="{{\App\Models\QuoteRequest::FINISHING['INDIVIDUAL']}}"
-                                    {{$quote->finishing == \App\Models\QuoteRequest::FINISHING['INDIVIDUAL'] ? 'selected':''}}>
-                                    Individual
-                                </option>
-                            </select>
+                            <h3> <strong>Items</strong></h3>
+                        </div>
+                    </div>
+                    @foreach ($quote->quote_item as $key => $item)
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <h6><strong>Item {{$key}}</strong></h6>
+                            <label for="name">Name</label>
+                            <input id="name" type="text" name="name[]" class="form-control form-control-alternative"
+                                value="{{$item->name}}" readonly>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="name">Quantity</label>
-                            <input type="number" name="quantity" class="form-control form-control-alternative"
-                                value="{{$quote->quantity}}" readonly>
+                            <input id="quantity" type="number" name="quantity[]"
+                                class="form-control form-control-alternative" value="{{$item->quantity}}" readonly>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="name">Additional Details</label>
-                            <textarea class="form-control" name="details" rows="3"
-                                readonly>{{$quote->details}}</textarea>
+                            <label for="name">Price</label>
+                            <input id="price" type="number" name="price[]" step="any"
+                                class="form-control form-control-alternative" value="{{$item->price}}" readonly>
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <div class="control-group" id="artwork">
-                                <h1>Artwork</h1>
-                                <div class="row mt-4">
-                                    @foreach ($quote->quote_request_artwork as $key =>
-                                    $quote_request_artwork)
-                                    <div class="col-md-6 text-center py-4">
-                                        @if (in_array($quote_request_artwork->type, ['png', 'jpg', 'jpeg', 'tif',
-                                        'tiff',
-                                        'bmp', 'gif', 'webp']) )
-                                        <a class="file_link" target="_blank"
-                                            href="{{asset('uploads/'.$quote_request_artwork->name)}}"
-                                            data-toggle="tooltip" title="Open in new tab">
-                                            <div class="img-div">
-                                                <img width=" 100%"
-                                                    src="{{asset('uploads/'.$quote_request_artwork->name)}}" alt="">
-                                            </div>
-                                            <h4>Artwork Image {{$key+1}}</h4>
-                                        </a>
-                                        @else
-                                        <a class="file_link" href="{{asset('uploads/'.$quote_request_artwork->name)}}"
-                                            data-toggle="tooltip" title="Click to download">
-                                            <div class="img-div">
-                                                <img width="60%" src="{{asset('assets/img/file.png')}}" alt="">
-                                            </div>
-                                            <h4>Artwork Document {{$key+1}}</h4>
-                                        </a>
-                                        @endif
-                                    </div>
-                                    @endforeach
-                                </div>
-
-                            </div>
+                            <label for="name">Description</label>
+                            <textarea class="form-control" name="description[]" rows="3"
+                                readonly>{{$item->description}}</textarea>
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -194,4 +166,20 @@
     }
 
 </style>
+@endsection
+
+@section('js')
+<script>
+    $(document).ready(function () {
+        $('#country').select2({
+            placeholder: "Select Country",
+            theme: "bootstrap"
+        });
+        $('#state').select2({
+            placeholder: "Select State",
+            theme: "bootstrap"
+        });
+    });
+
+</script>
 @endsection

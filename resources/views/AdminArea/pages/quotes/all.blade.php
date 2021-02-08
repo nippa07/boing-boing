@@ -38,7 +38,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Phone</th>
+                                <th>Status</th>
                                 <th>Created At</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
@@ -51,7 +51,21 @@
                                     <span>{{$quote->first_name}}&nbsp;{{$quote->last_name}}</span><br>
                                     <span class="badge badge-dark">{{$quote->email}}</span>
                                 </td>
-                                <td>{{$quote->phone}}</td>
+                                <td>
+                                    @switch($quote->status)
+                                    @case(\App\Models\Quote::STATUS['SENT'])
+                                    <span class="badge badge-primary">Sent</span>
+                                    @break
+                                    @case(\App\Models\Quote::STATUS['ACCEPTED'])
+                                    <span class="badge badge-success">Accepted</span>
+                                    @break
+                                    @case(\App\Models\Quote::STATUS['DECLINED'])
+                                    <span class="badge badge-danger">Declined</span>
+                                    @break
+                                    @default
+
+                                    @endswitch
+                                </td>
                                 <td>{{$quote->created_at}}</td>
                                 <td class="text-left">
                                     <div class="dropdown">
@@ -61,7 +75,7 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                             <a class="dropdown-item"
-                                                href="{{route('admin.custom.offer.view', $quote->id)}}">
+                                                href="{{route('admin.offer.quote.view', $quote->id)}}">
                                                 <i class="fa fa-eye text-secondary"></i>&nbsp;View
                                             </a>
                                             <div class="dropdown-divider responsive-moblile">

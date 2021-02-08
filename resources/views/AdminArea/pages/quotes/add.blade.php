@@ -64,17 +64,10 @@
                                     pattern="[0-9]*" value="{{$custom_offer?$custom_offer->phone:''}}" required>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="name">Company</label>
                                 <input id="company" type="text" name="company"
-                                    class="form-control form-control-alternative">
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label for="name">Vat Number</label>
-                                <input id="vat_number" type="text" name="vat_number"
                                     class="form-control form-control-alternative">
                             </div>
                         </div>
@@ -102,11 +95,11 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="name">Country</label>
-                                <select class="form-control" onchange="getStates('', 1)" name="country" id="country"
+                                <select class="form-control" onchange="getStates()" name="country" id="country"
                                     required>
                                     <option></option>
                                     @foreach($countries as $sn => $country)
-                                    <option value="{{ $sn }}">{{ $country }}</option>
+                                    <option value="{{ $sn }}" {{$sn == "AU"? 'selected':''}}>{{ $country }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -173,6 +166,8 @@
                         <div class="col-lg-12 text-center mt-3">
                             <hr>
                             <div class="form-group">
+                                <input type="hidden" name="quote_request_id"
+                                    value="{{$custom_offer?$custom_offer->id:''}}">
                                 <button type="submit" class="btn btn-success">
                                     Send Quote
                                 </button>
@@ -214,7 +209,7 @@
         });
     });
 
-    function getStates(def = "", status) {
+    function getStates() {
         var country = $('#country').val();
         $.ajax({
             url: "{{ route('get.states') }}?country=" + country,

@@ -100,8 +100,8 @@ class QuoteService
         if ($quote && $quote->status == Quote::STATUS['SENT']) {
             $quote->status = $status;
             $quote->save();
-        }
 
-        MailFacade::sendQuoteStatusMail($quote);
+            MailFacade::sendQuoteStatusMail($quote);
+        }
     }
 }

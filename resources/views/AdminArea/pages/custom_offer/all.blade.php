@@ -54,10 +54,14 @@
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                             <a class="dropdown-item"
                                                 href="{{route('admin.custom.offer.view', $custom_offer->id)}}">
-                                                <i class="fa fa-eye text-secondary"></i>&nbsp;View
+                                                <i class="fa fa-eye text-primary"></i>&nbsp;View
                                             </a>
-                                            <div class="dropdown-divider responsive-moblile">
-                                            </div>
+                                            <div class="dropdown-divider responsive-moblile"></div>
+                                            <a class="dropdown-item"
+                                                href="{{route('admin.offer.quote.add', $custom_offer->id)}}">
+                                                <i class="fa fa-paper-plane text-secondary"></i>&nbsp;Send Quote
+                                            </a>
+                                            <div class="dropdown-divider responsive-moblile"></div>
                                             <a class="dropdown-item delete-group" data-id="{{$custom_offer->id}}"
                                                 href="javascript:void(0)">
                                                 <i class="fa fa-trash text-danger"></i>&nbsp;Delete

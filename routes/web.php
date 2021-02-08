@@ -32,8 +32,11 @@ Route::prefix('/')->namespace('PublicArea')->group(function () {
     Route::get('/custom/offer', 'HomeController@customOffer')->name('public.custom.offer');
     Route::post('/custom/offer', 'HomeController@storeCustomOffer')->name('public.store.custom.offer');
 
-    Route::get('/quote/accept/{id}', 'HomeController@quoteAccept')->name('public.quote.accept');
-    Route::get('/quote/decline/{id}', 'HomeController@quoteDecline')->name('public.quote.decline');
+    Route::get('/quote/accept/{id}', 'QuoteController@quoteAccept')->name('public.quote.accept');
+    Route::get('/quote/decline/{id}', 'QuoteController@quoteDecline')->name('public.quote.decline');
+
+    Route::get('/thank-you', 'QuoteController@thankYou')->name('public.quote.thankYou');
+    Route::get('/checkout/{id?}', 'QuoteController@checkout')->name('public.quote.checkout');
 });
 
 /*
@@ -57,7 +60,7 @@ Route::prefix('/admin')->namespace('AdminArea')->group(function () {
 
     Route::prefix('/offer/quote')->group(function () {
         Route::get('/', 'QuoteController@all')->name('admin.offer.quote.all');
-        Route::get('/add', 'QuoteController@add')->name('admin.offer.quote.add');
+        Route::get('/add/{id?}', 'QuoteController@add')->name('admin.offer.quote.add');
         Route::post('/store', 'QuoteController@store')->name('admin.offer.quote.store');
         Route::get('/edit/{id}', 'QuoteController@edit')->name('admin.offer.quote.edit');
         Route::get('/view/{id}', 'QuoteController@view')->name('admin.offer.quote.view');
