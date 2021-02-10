@@ -32,6 +32,9 @@
                                 </td>
                             </tr>
                             @endforeach
+                            @php
+                            $total = number_format(array_sum($item_total) + (array_sum($item_total) * (10/100)), 2);
+                            @endphp
                             <tr>
                                 <th>
                                     Sub-Total:
@@ -53,7 +56,7 @@
                                     Total:
                                 </th>
                                 <td>
-                                    ${{number_format(array_sum($item_total) + (array_sum($item_total) * (10/100)), 2)}}
+                                    ${{$total}}
                                 </td>
                             </tr>
                         </tbody>
@@ -62,13 +65,15 @@
             </div>
         </div>
         <div class="col-lg-6 mt-4">
-            <div class="card shadow">
-                <div class="card-body">
-                    <h5 class="card-title text-center">
-                        <img src="{{asset('PublicArea/img/logo.webp')}}" alt="logo" style="max-width: 15rem;">
-                    </h5>
-                    <form action="" class="mt-4" method="POST">
-                        @csrf
+            <form id="payment-form" action="{{route('public.quote.checkout.save')}}" class="validation"
+                data-cc-on-file="false" method="POST"
+                data-stripe-publishable-key="{{ config('paymentgateways.stripe.key') }}">
+                @csrf
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">
+                            <img src="{{asset('PublicArea/img/logo.webp')}}" alt="logo" style="max-width: 15rem;">
+                        </h5>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -161,15 +166,86 @@
                                     <textarea class="form-control" name="notes" rows="3"></textarea>
                                 </div>
                             </div>
-                            <div class="col-lg-12 mt-3 text-center">
+                        </div>
+                    </div>
+                </div>
+                <div class="card shadow mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Payment</h5>
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                                <input class="payment_type" type="radio" class="form-check-input" name="payment_type"
+                                    value="{{\App\Models\Order::PAYMENT_TYPE['PAYPAL']}}">Paypal&nbsp;
+                                <img src="{{asset('PublicArea/img/paypal.webp')}}" alt="paypal"
+                                    style="max-width: 16rem;">
+                            </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <label class="form-check-label">
+                                <input class="payment_type" type="radio" class="form-check-input" name="payment_type"
+                                    value="{{\App\Models\Order::PAYMENT_TYPE['STRIPE']}}">Credit
+                                Cards &nbsp;
+                                <img src="{{asset('PublicArea/img/amex.svg')}}" alt="amex" style="max-width: 4rem">
+                                <img src="{{asset('PublicArea/img/discover.svg')}}" alt="discover"
+                                    style="max-width: 4rem">
+                                <img src="{{asset('PublicArea/img/visa.svg')}}" alt="visa" style="max-width: 4rem">
+                                <img src="{{asset('PublicArea/img/mastercard.svg')}}" alt="mastercard"
+                                    style="max-width: 4rem">
+                            </label>
+                        </div>
+                        <div id="stripe_content" class="row mt-4 d-none">
+                            <div class="col-lg-6">
                                 <div class="form-group">
+                                    <label for="name">Name on Card<sup class="text-danger">*</sup></label>
+                                    <input id="card_name" type="text" name="card_name"
+                                        class="form-control form-control-alternative">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="name">Card Number<sup class="text-danger">*</sup></label>
+                                    <input id="card_number" type="text" name="card_number"
+                                        class="form-control form-control-alternative">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="name">Expiration Month<sup class="text-danger">*</sup></label>
+                                    <input id="card_expiry_month" type="number" name="card_expiry_month"
+                                        placeholder='MM' class="form-control form-control-alternative">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="name">Expiration Year<sup class="text-danger">*</sup></label>
+                                    <input id="card_expiry_year" type="number" name="card_expiry_year"
+                                        placeholder='YYYY' class="form-control form-control-alternative">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="name">CVC<sup class="text-danger">*</sup></label>
+                                    <input id="card_cvc" type="number" name="card_cvc" placeholder='e.g - 415'
+                                        class="form-control form-control-alternative">
+                                </div>
+                            </div>
+                        </div>
+                        <div id="paypal_content" class="row mt-4 d-none">
+                            Paypal
+
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-lg-12 text-center">
+                                <div class="form-group">
+                                    <input type="hidden" name="total_amount" value="{{$total}}">
+                                    <input type="hidden" name="quote_id" value="{{$quote->id}}">
                                     <button class="btn btn-primary" type="submit">Submit</button>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -192,9 +268,8 @@
 @endsection
 
 @section('js')
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script>
-    var items = 1;
-
     $(document).ready(function () {
         $('#country').select2({
             placeholder: "Select Country",
@@ -227,6 +302,64 @@
             }
         });
     }
+
+    $('.payment_type').on('click', function () {
+        var payment_type = this.value;
+
+        if (payment_type == "{{\App\Models\Order::PAYMENT_TYPE['PAYPAL']}}") {
+            $('#paypal_content').removeClass('d-none');
+            $('#stripe_content').addClass('d-none');
+            validateStripe(false);
+
+        } else {
+            $('#stripe_content').removeClass('d-none');
+            $('#paypal_content').addClass('d-none');
+
+            validateStripe(true);
+        }
+    });
+
+    function validateStripe(state) {
+        $('#card_name').attr('required', state);
+        $('#card_number').attr('required', state);
+        $('#card_expiry_month').attr('required', state);
+        $('#card_expiry_year').attr('required', state);
+        $('#card_cvc').attr('required', state);
+    }
+    $(function () {
+        var $form = $(".validation");
+        $('form.validation').bind('submit', function (e) {
+            var $form = $(".validation"),
+                valid = true;
+
+            if (!$form.data('cc-on-file')) {
+                e.preventDefault();
+                Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+                Stripe.createToken({
+                    number: $('#card_number').val(),
+                    exp_month: $('#card_expiry_month').val(),
+                    exp_year: $('#card_expiry_year').val(),
+                    cvc: $('#card_cvc').val()
+                }, stripeHandleResponse);
+            }
+
+        });
+
+        function stripeHandleResponse(status, response) {
+            if (response.error) {
+                $('.error')
+                    .removeClass('hide')
+                    .find('.alert')
+                    .text(response.error.message);
+            } else {
+                var token = response['id'];
+                $form.find('input[type=text]').empty();
+                $form.append("<input type='hidden' name='stripeToken' value='" + token + "' />");
+                $form.get(0).submit();
+            }
+        }
+
+    });
 
 </script>
 @endsection

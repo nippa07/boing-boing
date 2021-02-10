@@ -80,7 +80,7 @@
                                             </a>
                                             <div class="dropdown-divider responsive-moblile">
                                             </div>
-                                            <a class="dropdown-item delete-group" data-id="{{$quote->id}}"
+                                            <a class="dropdown-item delete-btn" data-id="{{$quote->id}}"
                                                 href="javascript:void(0)">
                                                 <i class="fa fa-trash text-danger"></i>&nbsp;Delete
                                             </a>
@@ -112,12 +112,12 @@
         });
     });
 
-    $(".delete-group").on('click', function () {
+    $(".delete-btn").on('click', function () {
         var id = $(this).attr('data-id');
 
         swal({
             title: 'Are you sure?',
-            text: "This will permanently delete this user!",
+            text: "This will permanently delete this quote!",
             type: 'warning',
             buttons: {
                 confirm: {

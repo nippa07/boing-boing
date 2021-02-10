@@ -4,6 +4,7 @@ namespace services\User;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use services\Facade\MailFacade;
 
 class UserService
 {
@@ -75,5 +76,35 @@ class UserService
         $data['password'] = Hash::make($data['password']);
 
         $this->update($user, $data);
+    }
+
+    public function checkUser($data)
+    {
+        $user = $this->getByEmail($data['email']);
+
+        if (!$user) {
+            $user = $this->createUser($data);
+        }
+
+        return $user;
+    }
+
+    public function createUser($data)
+    {
+        $data['name'] = $data['first_name'] . ' ' . $data['last_name'];
+
+        $password = $this->generatePassword();
+        $data['password'] = Hash::make($password);
+
+        $user = $this->create($data);
+
+        MailFacade::sendUserDetails($user, $password);
+        return $user;
+    }
+
+    public function generatePassword()
+    {
+        $data = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz';
+        return substr(str_shuffle($data), 0, 8);
     }
 }

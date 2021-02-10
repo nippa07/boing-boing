@@ -2,7 +2,7 @@
 
 @section('header')
 <div class="page-header">
-    <h4 class="page-title">Custom Offer Requests</h4>
+    <h4 class="page-title">Orders</h4>
     <ul class="breadcrumbs">
         <li class="nav-home">
             <a href="{{route('admin.index')}}">
@@ -13,7 +13,7 @@
             <i class="flaticon-right-arrow"></i>
         </li>
         <li class="nav-item">
-            <a href="javscript:void(0)">Custom Offer Requests</a>
+            <a href="javscript:void(0)">Orders</a>
         </li>
     </ul>
 </div>
@@ -30,21 +30,49 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
-                                <th>Phone</th>
+                                <th>Payment Type</th>
+                                <th>Status</th>
                                 <th>Created At</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($custom_offers as $key => $custom_offer)
+                            @foreach ($orders as $key => $order)
                             <tr>
                                 <td>{{$key+1}}</td>
                                 <td>
-                                    <span>{{$custom_offer->first_name}}&nbsp;{{$custom_offer->last_name}}</span><br>
-                                    <span class="badge badge-dark">{{$custom_offer->email}}</span>
+                                    <span>{{$order->first_name}}&nbsp;{{$order->last_name}}</span><br>
+                                    <span class="badge badge-dark">{{$order->email}}</span>
                                 </td>
-                                <td>{{$custom_offer->phone}}</td>
-                                <td>{{$custom_offer->created_at}}</td>
+                                <td>
+                                    @switch($order->payment_type)
+                                    @case(\App\Models\Order::PAYMENT_TYPE['PAYPAL'])
+                                    <span>Paypal Payment</span>
+                                    @break
+                                    @case(\App\Models\Order::PAYMENT_TYPE['STRIPE'])
+                                    <span>Stripe Payment</span>
+                                    @break
+                                    @default
+                                    @endswitch
+                                </td>
+                                <td>
+                                    @switch($order->status)
+                                    @case(\App\Models\Order::STATUS['PLACED'])
+                                    <span class="badge badge-primary">Placed</span>
+                                    @break
+                                    @case(\App\Models\Order::STATUS['PAID'])
+                                    <span class="badge badge-success">Paid</span>
+                                    @break
+                                    @case(\App\Models\Order::STATUS['FAILED'])
+                                    <span class="badge badge-danger">Failed</span>
+                                    @break
+                                    @case(\App\Models\Order::STATUS['CANCELED'])
+                                    <span class="badge badge-warning">Canceled</span>
+                                    @break
+                                    @default
+                                    @endswitch
+                                </td>
+                                <td>{{$order->created_at}}</td>
                                 <td class="text-left">
                                     <div class="dropdown">
                                         <a class="btn btn-sm btn-icon-only text-dark" href="#" role="button"
@@ -52,17 +80,12 @@
                                             <i class="fas fa-ellipsis-v"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                            <a class="dropdown-item"
-                                                href="{{route('admin.custom.offer.view', $custom_offer->id)}}">
-                                                <i class="fa fa-eye text-primary"></i>&nbsp;View
+                                            <a class="dropdown-item" href="{{route('admin.orders.view', $order->id)}}">
+                                                <i class="fa fa-eye text-secondary"></i>&nbsp;View
                                             </a>
-                                            <div class="dropdown-divider responsive-moblile"></div>
-                                            <a class="dropdown-item"
-                                                href="{{route('admin.offer.quote.add', $custom_offer->id)}}">
-                                                <i class="fa fa-paper-plane text-secondary"></i>&nbsp;Send Quote
-                                            </a>
-                                            <div class="dropdown-divider responsive-moblile"></div>
-                                            <a class="dropdown-item delete-btn" data-id="{{$custom_offer->id}}"
+                                            <div class="dropdown-divider responsive-moblile">
+                                            </div>
+                                            <a class="dropdown-item delete-btn" data-id="{{$order->id}}"
                                                 href="javascript:void(0)">
                                                 <i class="fa fa-trash text-danger"></i>&nbsp;Delete
                                             </a>
@@ -99,7 +122,7 @@
 
         swal({
             title: 'Are you sure?',
-            text: "This will permanently delete this offer!",
+            text: "This will permanently delete this order!",
             type: 'warning',
             buttons: {
                 confirm: {
@@ -114,7 +137,7 @@
             }
         }).then((willDelete) => {
             if (willDelete) {
-                window.location.href = '{{ url("admin/custom/offer/delete") }}/' + id;
+                window.location.href = '{{ url("admin/order/delete") }}/' + id;
             }
         });
     });

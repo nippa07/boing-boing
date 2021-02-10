@@ -36,6 +36,11 @@ class Quote extends Model
         return $this->hasMany('App\Models\QuoteItem', 'quote_id');
     }
 
+    public function order()
+    {
+        return $this->hasOne('App\Models\Order', 'quote_id');
+    }
+
     public function getQuoteByQuoteNumber($quote_number)
     {
         return $this->where('quote_number', $quote_number)->first();
