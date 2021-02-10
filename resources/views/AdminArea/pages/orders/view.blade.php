@@ -2,7 +2,7 @@
 
 @section('header')
 <div class="page-header">
-    <h4 class="page-title">View Offer Quote</h4>
+    <h4 class="page-title">View Order</h4>
     <ul class="breadcrumbs">
         <li class="nav-home">
             <a href="{{route('admin.index')}}">
@@ -13,13 +13,13 @@
             <i class="flaticon-right-arrow"></i>
         </li>
         <li class="nav-item">
-            <a href="{{route('admin.offer.quote.all')}}">View Quotes</a>
+            <a href="{{route('admin.orders.all')}}">Orders</a>
         </li>
         <li class="separator">
             <i class="flaticon-right-arrow"></i>
         </li>
         <li class="nav-item">
-            <a href="javscript:void(0)">View Offer Quote</a>
+            <a href="javscript:void(0)">View Order</a>
         </li>
     </ul>
 </div>
@@ -35,56 +35,56 @@
                         <div class="form-group">
                             <label for="name">First Name</label>
                             <input id="first_name" type="text" name="first_name"
-                                class="form-control form-control-alternative" value="{{$quote->first_name}}" readonly>
+                                class="form-control form-control-alternative" value="{{$order->first_name}}" readonly>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="name">Last Name</label>
                             <input id="last_name" type="text" name="last_name" class="form-control
-                                        form-control-alternative" value="{{$quote->last_name}}" readonly>
+                                        form-control-alternative" value="{{$order->last_name}}" readonly>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="name">Email</label>
                             <input id="email" type="email" name="email" class="form-control form-control-alternative"
-                                value="{{$quote->email}}" readonly>
+                                value="{{$order->email}}" readonly>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="name">Phone</label>
                             <input type="text" name="phone" class="form-control form-control-alternative"
-                                pattern="[0-9]*" value="{{$quote->phone}}" readonly>
+                                pattern="[0-9]*" value="{{$order->phone}}" readonly>
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label for="name">Company</label>
                             <input id="company" type="text" name="company" class="form-control form-control-alternative"
-                                value="{{$quote->company}}" readonly>
+                                value="{{$order->company}}" readonly>
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label for="name">Address</label>
                             <input id="address" type="text" name="address" class="form-control form-control-alternative"
-                                value="{{$quote->address}}" readonly>
+                                value="{{$order->address}}" readonly>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="name">City</label>
                             <input id="city" type="text" name="city" class="form-control form-control-alternative"
-                                value="{{$quote->city}}" readonly>
+                                value="{{$order->city}}" readonly>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="name">Postal Code</label>
                             <input id="postal_code" type="text" name="postal_code"
-                                class="form-control form-control-alternative" value="{{$quote->postal_code}}" readonly>
+                                class="form-control form-control-alternative" value="{{$order->postal_code}}" readonly>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -93,7 +93,7 @@
                             <select class="form-control" name="country" id="country" disabled>
                                 <option></option>
                                 @foreach($countries as $sn => $country)
-                                <option value="{{ $sn }}" {{$quote->country == $sn? 'selected':''}}>{{ $country }}
+                                <option value="{{ $sn }}" {{$order->country == $sn? 'selected':''}}>{{ $country }}
                                 </option>
                                 @endforeach
                             </select>
@@ -105,7 +105,7 @@
                             <select class="form-control" id="state" name="state" disabled>
                                 <option></option>
                                 @foreach($countries as $sn => $state)
-                                <option value="{{ $sn }}" {{$quote->state == $sn? 'selected':''}}>{{ $state }}
+                                <option value="{{ $sn }}" {{$order->state == $sn? 'selected':''}}>{{ $state }}
                                 </option>
                                 @endforeach
                             </select>
@@ -117,7 +117,7 @@
                             <h3> <strong>Items</strong></h3>
                         </div>
                     </div>
-                    @foreach ($quote->quote_item as $key => $item)
+                    @foreach ($order->quote->quote_item as $key => $item)
                     <div class="col-lg-12">
                         <div class="form-group">
                             <h6><strong>Item {{$key}}</strong></h6>

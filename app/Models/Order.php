@@ -32,12 +32,18 @@ class Order extends Model
         'payment_type',
         'total_amount',
         'transaction_id',
-        'quote_id'
+        'quote_id',
+        'user_id'
     ];
 
     public function quote()
     {
         return $this->belongsTo('App\Models\Quote');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
     }
 
     public function getByQuoteId($quote_id)

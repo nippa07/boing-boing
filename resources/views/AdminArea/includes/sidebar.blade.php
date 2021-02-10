@@ -18,7 +18,7 @@
                 <li class="nav-item
                     {{in_array($active_url, ['admin.custom.offer.all', 'admin.custom.offer.view'])?'active':''}}">
                     <a href="{{route('admin.custom.offer.all')}}">
-                        <i class="fas fa-user"></i>
+                        <i class="flaticon-coins"></i>
                         <p>Custom Offer Requests</p>
                     </a>
                 </li>
@@ -26,8 +26,16 @@
                     class="nav-item
                     {{in_array($active_url, ['admin.offer.quote.all', 'admin.offer.quote.add', 'admin.offer.quote.view', 'admin.offer.quote.edit'])?'active':''}}">
                     <a href="{{route('admin.offer.quote.all')}}">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-receipt"></i>
                         <p>Offer Quotes</p>
+                    </a>
+                </li>
+                <li
+                    class="nav-item
+                    {{in_array($active_url, ['admin.orders.all', 'admin.orders.add', 'admin.orders.view', 'admin.orders.edit'])?'active':''}}">
+                    <a href="{{route('admin.orders.all')}}">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Orders</p>
                     </a>
                 </li>
             </ul>

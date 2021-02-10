@@ -74,6 +74,9 @@ class OrderService
 
     public function make($data)
     {
+        $user = UserFacade::checkUser($data);
+        $data['user_id'] = $user->id;
+
         $order = $this->getByQuoteId($data['quote_id']);
 
         if (!$order) {
@@ -89,7 +92,6 @@ class OrderService
                 $order->save();
 
                 MailFacade::sendOrderMail($order);
-                UserFacade::checkUser($data);
 
                 return ['status' => true, 'order' => $order];
             } else {

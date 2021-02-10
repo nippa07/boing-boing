@@ -85,6 +85,8 @@ class UserService
         if (!$user) {
             $user = $this->createUser($data);
         }
+
+        return $user;
     }
 
     public function createUser($data)

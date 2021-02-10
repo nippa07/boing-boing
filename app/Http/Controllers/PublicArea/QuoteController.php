@@ -38,6 +38,10 @@ class QuoteController extends Controller
             $response['quote'] = QuoteFacade::get($id);
         }
 
+        if ($response['quote'] && $response['quote']->order) {
+            return redirect(route('public.order.receipt', $response['quote']->order->id));
+        }
+
         return view('PublicArea.pages.checkout')->with($response);
     }
 
