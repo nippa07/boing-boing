@@ -99,7 +99,9 @@
                                     required>
                                     <option></option>
                                     @foreach($countries as $sn => $country)
+                                    @if ($sn == "AU")
                                     <option value="{{ $sn }}" {{$sn == "AU"? 'selected':''}}>{{ $country }}</option>
+                                    @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -207,6 +209,8 @@
             placeholder: "Select State",
             theme: "bootstrap"
         });
+
+        getStates();
     });
 
     function getStates() {

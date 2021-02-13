@@ -93,8 +93,10 @@
                             <select class="form-control" name="country" id="country" disabled>
                                 <option></option>
                                 @foreach($countries as $sn => $country)
+                                @if ($sn == "AU")
                                 <option value="{{ $sn }}" {{$quote->country == $sn? 'selected':''}}>{{ $country }}
                                 </option>
+                                @endif
                                 @endforeach
                             </select>
                         </div>

@@ -140,10 +140,12 @@
                                         required>
                                         <option></option>
                                         @foreach($countries as $sn => $country)
+                                        @if ($sn == "AU")
                                         <option value="{{ $sn }}"
                                             {{$quote && $sn == $quote->country ? 'selected':($sn == "AU"? 'selected':'')}}>
                                             {{ $country }}
                                         </option>
+                                        @endif
                                         @endforeach
                                     </select>
                                 </div>
