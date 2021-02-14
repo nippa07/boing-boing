@@ -40,6 +40,9 @@ Route::prefix('/')->namespace('PublicArea')->group(function () {
     Route::post('/checkout', 'QuoteController@saveCheckout')->name('public.quote.checkout.save');
 
     Route::get('/receipt/{id}', 'QuoteController@receipt')->name('public.order.receipt');
+
+    Route::get('/paypal/success/{id}', 'QuoteController@paypalSuccess')->name('public.paypal.success');
+    Route::get('/paypal/cancel/{id}', 'QuoteController@paypalCancel')->name('public.paypal.cancel');
 });
 
 /*
