@@ -3,7 +3,9 @@
 namespace services\Order;
 
 use App\Models\Order;
+use Illuminate\Http\Request;
 use services\Facade\MailFacade;
+use services\Facade\PaypalFacade;
 use services\Facade\StripeFacade;
 use services\Facade\UserFacade;
 
@@ -93,17 +95,49 @@ class OrderService
 
                 MailFacade::sendOrderMail($order);
 
-                return ['status' => true, 'order' => $order];
+                return ['status' => true, 'order' => $order, 'paypal_link' => null];
             } else {
                 $order->status = Order::STATUS['FAILED'];
                 $order->save();
 
-                return ['status' => false, 'order' => $order];
+                return ['status' => false, 'order' => $order, 'paypal_link' => null];
             }
         } else {
-            // $resp = StripeFacade::makePayment($order, $data);
+            $resp = PaypalFacade::makePayment($order, $data);
+
+            if ($resp && $resp['paypal_link']) {
+                return ['status' => true, 'order' => $order, 'paypal_link' => $resp['paypal_link']];
+            }
+
+            return ['status' => false, 'order' => $order, 'paypal_link' => null];
+        }
+
+        return ['status' => false, 'order' => $order, 'paypal_link' => null];
+    }
+
+    public function paypalSuccess(Request $request, $id)
+    {
+        $resp = PaypalFacade::checkSuccess($request, $id);
+
+        $order = $this->get($id);
+
+        if ($resp && in_array(strtoupper($resp['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
+            $order->transaction_id = $resp['CORRELATIONID'];
+            $order->status = Order::STATUS['PAID'];
+            $order->save();
+
+            MailFacade::sendOrderMail($order);
+
+            return ['status' => true, 'order' => $order];
         }
 
         return ['status' => false, 'order' => $order];
+    }
+
+    public function paypalCancel($id)
+    {
+        $order = $this->get($id);
+        $order->status = Order::STATUS['FAILED'];
+        $order->save();
     }
 }

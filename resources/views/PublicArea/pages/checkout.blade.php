@@ -232,8 +232,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="paypal_content" class="row mt-4 d-none">
-                            Paypal
+                        <div id="paypal_content" class="row d-none">
 
                         </div>
                         <div class="row mt-5">
@@ -272,6 +271,8 @@
 @section('js')
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script>
+    var payment_type = 1;
+
     $(document).ready(function () {
         $('#country').select2({
             placeholder: "Select Country",
@@ -306,7 +307,7 @@
     }
 
     $('.payment_type').on('click', function () {
-        var payment_type = this.value;
+        payment_type = this.value;
 
         if (payment_type == "{{\App\Models\Order::PAYMENT_TYPE['PAYPAL']}}") {
             $('#paypal_content').removeClass('d-none');
@@ -330,19 +331,23 @@
     }
     $(function () {
         var $form = $(".validation");
-        $('form.validation').bind('submit', function (e) {
-            var $form = $(".validation"),
-                valid = true;
 
-            if (!$form.data('cc-on-file')) {
-                e.preventDefault();
-                Stripe.setPublishableKey($form.data('stripe-publishable-key'));
-                Stripe.createToken({
-                    number: $('#card_number').val(),
-                    exp_month: $('#card_expiry_month').val(),
-                    exp_year: $('#card_expiry_year').val(),
-                    cvc: $('#card_cvc').val()
-                }, stripeHandleResponse);
+        $('form.validation').bind('submit', function (e) {
+            if (payment_type != "{{\App\Models\Order::PAYMENT_TYPE['PAYPAL']}}") {
+
+                var $form = $(".validation"),
+                    valid = true;
+
+                if (!$form.data('cc-on-file')) {
+                    e.preventDefault();
+                    Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+                    Stripe.createToken({
+                        number: $('#card_number').val(),
+                        exp_month: $('#card_expiry_month').val(),
+                        exp_year: $('#card_expiry_year').val(),
+                        cvc: $('#card_cvc').val()
+                    }, stripeHandleResponse);
+                }
             }
 
         });
