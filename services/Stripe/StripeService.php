@@ -25,7 +25,7 @@ class StripeService
 
         $resp = Stripe\Charge::create([
             "amount" => $data['total_amount'] * 100,
-            "currency" => "usd",
+            "currency" => "aud",
             "customer" => $customer->id,
             "description" => "Payment for order " . $order->quote->quote_number
         ]);
