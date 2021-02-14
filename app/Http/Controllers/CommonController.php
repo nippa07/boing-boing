@@ -21,6 +21,6 @@ class CommonController extends Controller
     public function mailTest()
     {
         $response['quote'] = QuoteFacade::get(1);
-        return view('Mail.quote_status_mail')->with($response);
+        return view('Mail.quote_mail')->with($response);
     }
 }

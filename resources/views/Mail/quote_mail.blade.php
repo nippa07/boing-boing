@@ -324,6 +324,11 @@
                                                                     <strong>Please accept if you like to go ahead
                                                                         with your sticker order.</strong>
                                                                 </p>
+                                                                <p
+                                                                    style="font-size: 14px; line-height: 140%; text-align: center;">
+                                                                    <strong>Please check and update your address when
+                                                                        you make your payment.</strong>
+                                                                </p>
                                                             </div>
 
                                                         </td>
@@ -808,7 +813,7 @@
                                                                             <tr style="vertical-align: top">
                                                                                 <td align="left" valign="middle"
                                                                                     style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-                                                                                    <a href="https://facebook.com/"
+                                                                                    <a href="https://www.facebook.com/Stirckersprinting"
                                                                                         title="Facebook"
                                                                                         target="_blank">
                                                                                         <img src="https://cdn.tools.unlayer.com/social/icons/circle-black/facebook.png"
@@ -830,7 +835,7 @@
                                                                             <tr style="vertical-align: top">
                                                                                 <td align="left" valign="middle"
                                                                                     style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-                                                                                    <a href="https://twitter.com/"
+                                                                                    <a href="https://www.instagram.com/boingboingaus/"
                                                                                         title="Twitter" target="_blank">
                                                                                         <img src="https://cdn.tools.unlayer.com/social/icons/circle-black/instagram.png"
                                                                                             alt="Twitter"
@@ -851,7 +856,7 @@
                                                                             <tr style="vertical-align: top">
                                                                                 <td align="left" valign="middle"
                                                                                     style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
-                                                                                    <a href="https://instagram.com/"
+                                                                                    <a href="https://www.youtube.com/channel/UCXKlpXb4Y9c-G1cwfmXTSjQ"
                                                                                         title="Instagram"
                                                                                         target="_blank">
                                                                                         <img src="https://cdn.tools.unlayer.com/social/icons/circle-black/youtube.png"
