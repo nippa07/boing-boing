@@ -17,7 +17,7 @@ class PaypalService
             $product['items'][$key] =
                 [
                     'name' => $item->name,
-                    'price' => $item->price,
+                    'price' => ($item->price / $item->quantity),
                     'desc'  => $item->description,
                     'qty' => $item->quantity
                 ];
