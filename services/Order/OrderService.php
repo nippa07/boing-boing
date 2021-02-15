@@ -139,5 +139,7 @@ class OrderService
         $order = $this->get($id);
         $order->status = Order::STATUS['FAILED'];
         $order->save();
+
+        return $order;
     }
 }
