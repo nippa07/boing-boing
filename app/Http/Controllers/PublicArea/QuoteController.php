@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\PublicArea;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\Quote;
 use Illuminate\Http\Request;
 use services\Facade\QuoteFacade;
@@ -38,7 +39,7 @@ class QuoteController extends Controller
             $response['quote'] = QuoteFacade::get($id);
         }
 
-        if ($response['quote'] && $response['quote']->order) {
+        if ($response['quote'] && $response['quote']->order && $response['quote']->order->status == Order::STATUS['PAID']) {
             return redirect(route('public.order.receipt', $response['quote']->order->id));
         }
 
