@@ -32,8 +32,8 @@
                             </tr>
                             @endforeach
                             @php
-                            $total = number_format(array_sum($item_total) + $quote->shipping_amount +
-                            ((array_sum($item_total) + $quote->shipping_amount) * (10/100)), 2);
+                            $total = array_sum($item_total) + $quote->shipping_amount + ((array_sum($item_total) +
+                            $quote->shipping_amount) * (10/100));
                             @endphp
                             <tr>
                                 <th>
@@ -64,7 +64,7 @@
                                     Total:
                                 </th>
                                 <td>
-                                    ${{$total}}
+                                    ${{number_format($total , 2)}}
                                 </td>
                             </tr>
                         </tbody>
@@ -260,7 +260,7 @@
                         <div class="row mt-3">
                             <div class="col-lg-12 text-center">
                                 <div class="form-group">
-                                    <input type="hidden" name="total_amount" value="{{$total}}">
+                                    <input type="hidden" name="total_amount" value="{{round($total, 2)}}">
                                     <input type="hidden" name="quote_id" value="{{$quote->id}}">
                                     <button class="btn btn-primary" type="submit">Submit</button>
                                 </div>
