@@ -13,8 +13,15 @@ class PaypalService
         $product = [];
         $product['items'] = [];
 
+        $product['items'][0] =
+            [
+                'name' => "Shipping",
+                'price' => ($order->quote->shipping_amount),
+                'desc'  => "Shipping",
+                'qty' => 1
+            ];
         foreach ($order->quote->quote_item as $key => $item) {
-            $product['items'][$key] =
+            $product['items'][$key + 1] =
                 [
                     'name' => $item->name,
                     'price' => ($item->price / $item->quantity),
