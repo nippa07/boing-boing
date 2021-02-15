@@ -28,6 +28,7 @@ class Quote extends Model
         'state',
         'postal_code',
         'status',
+        'shipping_amount',
         'quote_request_id'
     ];
 

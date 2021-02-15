@@ -663,10 +663,18 @@
                                                                         @endforeach
                                                                         <tr class="item_tr2">
                                                                             <td colspan="4" class="item_td">
+                                                                                Shipping:
+                                                                            </td>
+                                                                            <td style="text-align: center">
+                                                                                ${{number_format($quote->shipping_amount, 2)}}
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="item_tr2">
+                                                                            <td colspan="4" class="item_td">
                                                                                 Sub-Total:
                                                                             </td>
                                                                             <td style="text-align: center">
-                                                                                ${{number_format(array_sum($item_total), 2)}}
+                                                                                ${{number_format(array_sum($item_total) + $quote->shipping_amount, 2)}}
                                                                             </td>
                                                                         </tr>
                                                                         <tr class="item_tr2">
@@ -674,7 +682,7 @@
                                                                                 GST:
                                                                             </td>
                                                                             <td style="text-align: center">
-                                                                                ${{number_format(array_sum($item_total) * (10/100), 2)}}
+                                                                                ${{number_format((array_sum($item_total) + $quote->shipping_amount) * (10/100), 2)}}
                                                                             </td>
                                                                         </tr>
                                                                         <tr class="item_tr2">
@@ -682,7 +690,7 @@
                                                                                 Total:
                                                                             </td>
                                                                             <td style="text-align: center">
-                                                                                ${{number_format(array_sum($item_total) + (array_sum($item_total) * (10/100)), 2)}}
+                                                                                ${{number_format(array_sum($item_total) + $quote->shipping_amount + (( array_sum($item_total)+ $quote->shipping_amount ) * (10/100)), 2)}}
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>

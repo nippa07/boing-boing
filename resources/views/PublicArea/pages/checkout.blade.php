@@ -33,14 +33,23 @@
                             </tr>
                             @endforeach
                             @php
-                            $total = number_format(array_sum($item_total) + (array_sum($item_total) * (10/100)), 2);
+                            $total = number_format(array_sum($item_total) + $quote->shipping_amount +
+                            ((array_sum($item_total) + $quote->shipping_amount) * (10/100)), 2);
                             @endphp
+                            <tr>
+                                <th>
+                                    Shipping:
+                                </th>
+                                <td>
+                                    ${{number_format($quote->shipping_amount, 2)}}
+                                </td>
+                            </tr>
                             <tr>
                                 <th>
                                     Sub-Total:
                                 </th>
                                 <td>
-                                    ${{number_format(array_sum($item_total), 2)}}
+                                    ${{number_format(array_sum($item_total) + $quote->shipping_amount, 2)}}
                                 </td>
                             </tr>
                             <tr>
@@ -48,7 +57,7 @@
                                     GST:
                                 </th>
                                 <td>
-                                    ${{number_format(array_sum($item_total) * (10/100), 2)}}
+                                    ${{number_format((array_sum($item_total) + $quote->shipping_amount) * (10/100), 2)}}
                                 </td>
                             </tr>
                             <tr>
@@ -177,7 +186,7 @@
                         <div class="form-check-inline">
                             <label class="form-check-label">
                                 <input class="payment_type" type="radio" class="form-check-input" name="payment_type"
-                                    value="{{\App\Models\Order::PAYMENT_TYPE['PAYPAL']}}">Paypal&nbsp;
+                                    value="{{\App\Models\Order::PAYMENT_TYPE['PAYPAL']}}" required>Paypal&nbsp;
                                 <img src="{{asset('PublicArea/img/paypal.webp')}}" alt="paypal"
                                     style="max-width: 16rem;">
                             </label>
@@ -185,7 +194,7 @@
                         <div class="form-check-inline">
                             <label class="form-check-label">
                                 <input class="payment_type" type="radio" class="form-check-input" name="payment_type"
-                                    value="{{\App\Models\Order::PAYMENT_TYPE['STRIPE']}}">Credit
+                                    value="{{\App\Models\Order::PAYMENT_TYPE['STRIPE']}}" required>Credit
                                 Cards &nbsp;
                                 <img src="{{asset('PublicArea/img/amex.svg')}}" alt="amex" style="max-width: 4rem">
                                 <img src="{{asset('PublicArea/img/discover.svg')}}" alt="discover"
@@ -236,6 +245,20 @@
 
                         </div>
                         <div class="row mt-5">
+                            <div class="col-lg-12 text-center">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="conditions" required>
+                                    <label class="form-check-label" for="conditions">
+                                        I accept all Boing Boing Stickers <a target="_blank"
+                                            href="https://boingboing.com.au/terms/">Terms and
+                                            Conditions</a> and I have read the <a target="_blank"
+                                            href="https://boingboing.com.au/privacy-policy/">Privacy
+                                            Policy</a>.
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
                             <div class="col-lg-12 text-center">
                                 <div class="form-group">
                                     <input type="hidden" name="total_amount" value="{{$total}}">
