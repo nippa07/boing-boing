@@ -19,8 +19,7 @@
                         <tbody>
                             @foreach ($quote->quote_item as $key => $item)
                             @php
-                            $item_total[$key] = ($item->price *
-                            $item->quantity);
+                            $item_total[$key] = ($item->price);
                             @endphp
                             <tr class="item_tr">
                                 <td>
