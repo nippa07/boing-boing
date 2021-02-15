@@ -12,6 +12,7 @@ class PaypalService
     {
         $product = [];
         $product['items'] = [];
+        $item_total = 0;
 
         $product['items'][0] =
             [
@@ -20,15 +21,26 @@ class PaypalService
                 'desc'  => "Shipping",
                 'qty' => 1
             ];
+
         foreach ($order->quote->quote_item as $key => $item) {
-            $product['items'][$key + 1] =
+            $product['items'][$key + 2] =
                 [
                     'name' => $item->name,
                     'price' => ($item->price / $item->quantity),
                     'desc'  => $item->description,
                     'qty' => $item->quantity
                 ];
+
+            $item_total += $item->price;
         }
+
+        $product['items'][1] =
+            [
+                'name' => "Tax",
+                'price' => ($order->quote->shipping_amount + $item_total) * (10 / 100),
+                'desc'  => "Tax",
+                'qty' => 1
+            ];
 
         $product['invoice_id'] = $order->quote->quote_number;
         $product['invoice_description'] = "Order #{$product['invoice_id']}";
