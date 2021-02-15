@@ -137,7 +137,7 @@ class OrderService
     public function paypalCancel($id)
     {
         $order = $this->get($id);
-        $order->status = Order::STATUS['FAILED'];
+        $order->status = Order::STATUS['CANCELED'];
         $order->save();
 
         return $order;
