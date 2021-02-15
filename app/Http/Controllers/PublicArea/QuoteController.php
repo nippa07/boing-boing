@@ -56,7 +56,7 @@ class QuoteController extends Controller
             }
             return redirect(route('public.order.receipt', $resp['order']->id));
         } else {
-            return redirect()->back()->with('alert-danger', "Payment Failed 1!");
+            return redirect()->back()->with('alert-danger', "Payment Failed!");
         }
     }
 
@@ -74,7 +74,7 @@ class QuoteController extends Controller
         if ($resp['status']) {
             return redirect(route('public.order.receipt', $resp['order']->id));
         } else {
-            return redirect(route('public.quote.checkout', $id))->with('alert-danger', "Payment Failed 2!");
+            return redirect(route('public.quote.checkout', $id))->with('alert-danger', "Payment Failed!");
         }
     }
 
@@ -82,6 +82,6 @@ class QuoteController extends Controller
     {
         OrderFacade::paypalCancel($id);
 
-        return redirect(route('public.quote.checkout', $id))->with('alert-danger', "Payment Failed 3!");
+        return redirect(route('public.quote.checkout', $id))->with('alert-danger', "Payment Failed!");
     }
 }
