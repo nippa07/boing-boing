@@ -80,8 +80,8 @@
                                             </a>
                                             <div class="dropdown-divider responsive-moblile">
                                             </div>
-                                            <a class="dropdown-item delete-btn" data-id="{{$quote->id}}"
-                                                href="javascript:void(0)">
+                                            <a class="dropdown-item {{$quote->order ? 'disabled':'delete-btn'}}"
+                                                data-id="{{$quote->id}}" href="javascript:void(0)">
                                                 <i class="fa fa-trash text-danger"></i>&nbsp;Delete
                                             </a>
                                         </div>

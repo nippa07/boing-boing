@@ -84,6 +84,13 @@
                                                 href="{{route('customer.orders.view', $order->id)}}">
                                                 <i class="fa fa-eye text-secondary"></i>&nbsp;View
                                             </a>
+                                            @if ($order->status == \App\Models\Order::STATUS['PAID'])
+                                            <div class="dropdown-divider responsive-moblile"></div>
+                                            <a class="dropdown-item" target="_blank"
+                                                href="{{route('public.order.receipt', $order->id)}}">
+                                                <i class="fa fa-receipt text-primary"></i>&nbsp;View Receipt
+                                            </a>
+                                            @endif
                                             {{-- <div class="dropdown-divider responsive-moblile">
                                             </div>
                                             <a class="dropdown-item delete-btn" data-id="{{$order->id}}"

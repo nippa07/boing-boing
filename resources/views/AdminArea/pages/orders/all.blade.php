@@ -137,7 +137,7 @@
             }
         }).then((willDelete) => {
             if (willDelete) {
-                window.location.href = '{{ url("admin/order/delete") }}/' + id;
+                window.location.href = '{{ url("admin/orders/delete") }}/' + id;
             }
         });
     });
