@@ -201,6 +201,7 @@
 
     function getStates() {
         var country = $('#country').val();
+        var sel_state = "{{$quote->state}}";
         $.ajax({
             url: "{{ route('get.states') }}?country=" + country,
             headers: {
@@ -210,7 +211,8 @@
             success: function (response) {
                 var html = "";
                 $.each(response, function (key, state) {
-                    html += "<option value='" + key + "'>" +
+                    html += "<option value='" + key + "'" + (sel_state == key ? 'selected' : '') +
+                        ">" +
                         state + "</option>";
                 });
 

@@ -267,7 +267,9 @@
                                                                     style="font-size: 14px; line-height: 140%; text-align: center;">
                                                                     Ypur account login details are<br>
                                                                     Email - {{$data['user']->email}}<br>
-                                                                    Password - {{$data['password']}}
+                                                                    Password - {{$data['password']}} <br><br>
+                                                                    Link to login - <a
+                                                                        href="{{route('login')}}">{{route('login')}}</a>
                                                                 </p>
                                                             </div>
 
