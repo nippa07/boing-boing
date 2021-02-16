@@ -67,6 +67,8 @@ class QuoteItemService
             $data['quantity'] = $form_data['quantity'][$i];
             $data['price'] = $form_data['price'][$i];
             $data['description'] = $form_data['description'][$i];
+            $data['type'] = $form_data['type'][$i];
+            $data['t_time'] = $form_data['t_time'][$i];
 
             $this->create($data);
         }

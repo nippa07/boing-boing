@@ -146,6 +146,56 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
+                                <label for="name">Sticker Type</label>
+                                <select class="form-control" name="type[]" id="type" required>
+                                    <option></option>
+                                    <option value="{{\App\Models\QuoteItem::TYPE['BUMPER_STICKERS']}}">
+                                        Bumper Stickers
+                                    </option>
+                                    <option value="{{\App\Models\QuoteItem::TYPE['VINYL_STICKERS']}}">
+                                        Vinyl Stickers
+                                    </option>
+                                    <option value="{{\App\Models\QuoteItem::TYPE['CLEAR_VINYL_STICKERS']}}">
+                                        Clear Vinyl Stickers
+                                    </option>
+                                    <option
+                                        value="{{\App\Models\QuoteItem::TYPE['CLEAR_VINYL_STICKERS_WITH_WHITE_INK']}}">
+                                        Clear Vinyl Stickers With White INK
+                                    </option>
+                                    <option value="{{\App\Models\QuoteItem::TYPE['HIGH_TRACK_STICKERS']}}">
+                                        High Tack Stickers
+                                    </option>
+                                    <option value="{{\App\Models\QuoteItem::TYPE['BLOCKOUT_VINYL_STICKERS']}}">
+                                        Blockout Vinyl
+                                        Stickers</option>
+                                    <option value="{{\App\Models\QuoteItem::TYPE['GOLD_SILVER_VINYL_STICKERS']}}">
+                                        Gold / Silver Vinyl Stickers
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="name">Turnaround Time</label>
+                                <select class="form-control" name="t_time[]" id="t_time" required>
+                                    <option></option>
+                                    <option value="{{\App\Models\QuoteItem::TURNAROUND_TIME['1_2_DAYS']}}">
+                                        1-2 Days
+                                    </option>
+                                    <option value="{{\App\Models\QuoteItem::TURNAROUND_TIME['2_3_DAYS']}}">
+                                        2-3 Days
+                                    </option>
+                                    <option value="{{\App\Models\QuoteItem::TURNAROUND_TIME['3_5_DAYS']}}">
+                                        3-5 Days
+                                    </option>
+                                    <option value="{{\App\Models\QuoteItem::TURNAROUND_TIME['5_7_DAYS']}}">
+                                        5-7 Days
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
                                 <label for="name">Quantity</label>
                                 <input id="quantity" type="number" name="quantity[]" min="1"
                                     class="form-control form-control-alternative" required>
@@ -222,7 +272,14 @@
             placeholder: "Select State",
             theme: "bootstrap"
         });
-
+        $('#type').select2({
+            placeholder: "Select Sticker Type",
+            theme: "bootstrap"
+        });
+        $('#t_time').select2({
+            placeholder: "Select Turnaround Time",
+            theme: "bootstrap"
+        });
         getStates();
     });
 

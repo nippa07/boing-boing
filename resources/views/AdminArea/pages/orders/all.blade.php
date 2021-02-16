@@ -30,6 +30,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
+                                <th>Completion Status</th>
                                 <th>Payment Type</th>
                                 <th>Status</th>
                                 <th>Created At</th>
@@ -43,6 +44,18 @@
                                 <td>
                                     <span>{{$order->first_name}}&nbsp;{{$order->last_name}}</span><br>
                                     <span class="badge badge-dark">{{$order->email}}</span>
+                                </td>
+                                <td>
+                                    @switch($order->admin_status)
+                                    @case(\App\Models\Order::ADMIN_STATUS['COMPLETED'])
+                                    <span class="badge badge-success">Completed</span>
+                                    @break
+                                    @case(\App\Models\Order::ADMIN_STATUS['IN_PRODUCTION'])
+                                    <span class="badge badge-info">In Production</span>
+                                    @break
+                                    @default
+                                    -
+                                    @endswitch
                                 </td>
                                 <td>
                                     @switch($order->payment_type)
@@ -83,8 +96,17 @@
                                             <a class="dropdown-item" href="{{route('admin.orders.view', $order->id)}}">
                                                 <i class="fa fa-eye text-secondary"></i>&nbsp;View
                                             </a>
-                                            <div class="dropdown-divider responsive-moblile">
-                                            </div>
+                                            <div class="dropdown-divider responsive-moblile"></div>
+                                            <a class="dropdown-item"
+                                                href="{{route('admin.orders.complete', $order->id)}}">
+                                                <i class="fa fa-check text-success"></i>&nbsp;Mark As Complete
+                                            </a>
+                                            <div class="dropdown-divider responsive-moblile"></div>
+                                            <a class="dropdown-item"
+                                                href="{{route('admin.orders.in_production', $order->id)}}">
+                                                <i class="fa fa-spinner text-info"></i>&nbsp;Mark As In Production
+                                            </a>
+                                            <div class="dropdown-divider responsive-moblile"></div>
                                             <a class="dropdown-item delete-btn" data-id="{{$order->id}}"
                                                 href="javascript:void(0)">
                                                 <i class="fa fa-trash text-danger"></i>&nbsp;Delete
