@@ -11,6 +11,7 @@ class Order extends Model
 
     const PAYMENT_TYPE = ['PAYPAL' => 1, 'STRIPE' => 2];
     const STATUS = ['PLACED' => 1, 'PAID' => 2, 'FAILED' => 3, 'CANCELED' => 4];
+    const ADMIN_STATUS = ['COMPLETED' => 1, 'IN_PRODUCTION' => 2];
     /**
      * The attributes that are mass assignable.
      *
@@ -33,6 +34,7 @@ class Order extends Model
         'total_amount',
         'transaction_id',
         'quote_id',
+        'admin_status',
         'user_id'
     ];
 

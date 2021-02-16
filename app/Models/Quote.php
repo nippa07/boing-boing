@@ -10,6 +10,7 @@ class Quote extends Model
     use HasFactory;
 
     const STATUS = ['SENT' => 1, 'ACCEPTED' => 2, 'DECLINED' => 3];
+
     /**
      * The attributes that are mass assignable.
      *

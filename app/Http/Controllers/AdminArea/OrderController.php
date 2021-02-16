@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminArea;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use services\Facade\OrderFacade;
 use CountryState;
@@ -55,5 +56,19 @@ class OrderController extends ParentController
         OrderFacade::delete($id);
 
         return redirect()->back()->with('alert-success', "Order Deleted Successfully!");
+    }
+
+    public function complete($id)
+    {
+        OrderFacade::changeStatus($id, Order::ADMIN_STATUS['COMPLETED']);
+
+        return redirect()->back()->with('alert-success', "Order Marked As Complete Successfully!");
+    }
+
+    public function inProduction($id)
+    {
+        OrderFacade::changeStatus($id, Order::ADMIN_STATUS['IN_PRODUCTION']);
+
+        return redirect()->back()->with('alert-success', "Order Marked As In Production Successfully!");
     }
 }

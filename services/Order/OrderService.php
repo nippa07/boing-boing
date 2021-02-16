@@ -142,4 +142,11 @@ class OrderService
 
         return $order;
     }
+
+    public function changeStatus($id, $admin_status)
+    {
+        $order = $this->get($id);
+        $order->admin_status = $admin_status;
+        $order->save();
+    }
 }

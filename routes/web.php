@@ -82,6 +82,9 @@ Route::prefix('/admin')->namespace('AdminArea')->group(function () {
         Route::get('/view/{id}', 'OrderController@view')->name('admin.orders.view');
         Route::post('/update/{id}', 'OrderController@update')->name('admin.orders.update');
         Route::get('/delete/{id}', 'OrderController@delete')->name('admin.orders.delete');
+
+        Route::get('/complete/{id}', 'OrderController@complete')->name('admin.orders.complete');
+        Route::get('/in_production/{id}', 'OrderController@inProduction')->name('admin.orders.in_production');
     });
 });
 
