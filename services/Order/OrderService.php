@@ -104,7 +104,7 @@ class OrderService
             }
         } else {
             $resp = PaypalFacade::makePayment($order, $data);
-
+            dd($resp);
             if ($resp && $resp['paypal_link']) {
                 return ['status' => true, 'order' => $order, 'paypal_link' => $resp['paypal_link']];
             }
