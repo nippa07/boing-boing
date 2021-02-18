@@ -2,6 +2,7 @@
 
 namespace services\Mail;
 
+use App\Events\InvoiceMailEvent;
 use App\Events\QuoteMailEvent;
 use App\Events\QuoteStatusMailEvent;
 use App\Events\OrderMailEvent;
@@ -30,5 +31,10 @@ class MailService
     public function sendUserDetails(User $user, $password)
     {
         event(new SendUserDetailsMailEvent($user, $password));
+    }
+
+    public function sendInvoiceMail(Order $order)
+    {
+        event(new InvoiceMailEvent($order));
     }
 }

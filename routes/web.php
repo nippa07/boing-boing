@@ -72,6 +72,8 @@ Route::prefix('/admin')->namespace('AdminArea')->group(function () {
         Route::get('/view/{id}', 'QuoteController@view')->name('admin.offer.quote.view');
         Route::post('/update/{id}', 'QuoteController@update')->name('admin.offer.quote.update');
         Route::get('/delete/{id}', 'QuoteController@delete')->name('admin.offer.quote.delete');
+
+        Route::get('/send/mail/{id}', 'QuoteController@sendMail')->name('admin.offer.quote.send.mail');
     });
 
     Route::prefix('/orders')->group(function () {

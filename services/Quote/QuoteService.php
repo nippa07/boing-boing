@@ -104,4 +104,11 @@ class QuoteService
             MailFacade::sendQuoteStatusMail($quote);
         }
     }
+
+    public function sendMail($id)
+    {
+        $quote = $this->get($id);
+
+        MailFacade::sendQuoteMail($quote);
+    }
 }
