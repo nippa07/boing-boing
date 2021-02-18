@@ -63,4 +63,11 @@ class QuoteController extends ParentController
 
         return redirect()->back()->with('alert-success', "Offer Quote Deleted Successfully!");
     }
+
+    public function sendMail($id)
+    {
+        QuoteFacade::sendMail($id);
+
+        return redirect()->back()->with('alert-success', "Offer Quote Mail Sent Successfully!");
+    }
 }

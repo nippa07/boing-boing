@@ -94,6 +94,7 @@ class OrderService
                 $order->save();
 
                 MailFacade::sendOrderMail($order);
+                MailFacade::sendInvoiceMail($order);
 
                 return ['status' => true, 'order' => $order, 'paypal_link' => null];
             } else {
@@ -127,6 +128,7 @@ class OrderService
             $order->save();
 
             MailFacade::sendOrderMail($order);
+            MailFacade::sendInvoiceMail($order);
 
             return ['status' => true, 'order' => $order];
         }

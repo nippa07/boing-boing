@@ -256,8 +256,8 @@
                                                                     style="font-size: 14px; line-height: 140%; text-align: center;">
                                                                     <strong><span
                                                                             style="font-size: 24px; line-height: 33.6px;">
-                                                                            Your quote {{$quote->quote_number}}
-                                                                            details
+                                                                            Your invoice for order
+                                                                            {{$order->quote->quote_number}}
                                                                         </span>
                                                                     </strong>
                                                                 </p>
@@ -309,25 +309,12 @@
                                                                 <p
                                                                     style="font-size: 14px; line-height: 140%; text-align: center;">
                                                                     Hi
-                                                                    {{$quote->first_name}}&nbsp;{{$quote->last_name}},
+                                                                    {{$order->first_name}}&nbsp;{{$order->last_name}},
                                                                 </p>
                                                                 <br>
                                                                 <p
                                                                     style="font-size: 14px; line-height: 140%; text-align: center;">
-                                                                    We have provided you with our quote on Vinyl Sticker
-                                                                    specialists | Custom Stickers.
-
-                                                                </p>
-                                                                <br>
-                                                                <p
-                                                                    style="font-size: 14px; line-height: 140%; text-align: center;">
-                                                                    <strong>Please accept if you like to go ahead
-                                                                        with your sticker order.</strong>
-                                                                </p>
-                                                                <p
-                                                                    style="font-size: 14px; line-height: 140%; text-align: center;">
-                                                                    <strong>Please check and update your address when
-                                                                        you make your payment.</strong>
+                                                                    We have received your payment successfully.
                                                                 </p>
                                                             </div>
 
@@ -380,7 +367,7 @@
                                                                 <span
                                                                     style="padding:5px 120px;display:inline;color:#000;font-family:arial black,avant garde,arial;font-size:16px"
                                                                     class="v-padding">
-                                                                    Quote Details
+                                                                    Order Details
                                                                 </span>
 
                                                                 <!--[if (mso)|(IE)]></td><![endif]-->
@@ -439,7 +426,7 @@
                                                                 <span
                                                                     style="padding-right:50px;display:inline;color:#444444;font-family:arial black,avant garde,arial;font-size:16px"
                                                                     class="v-padding">
-                                                                    Quote Number
+                                                                    Order Number
                                                                 </span>
 
                                                                 <!--[if (mso)|(IE)]></td><![endif]-->
@@ -450,7 +437,7 @@
                                                                 <span style="padding-left:50px;display:inline;color:#444444;font-family:arial
                                                                     black,avant garde,arial;font-size:16px"
                                                                     class="v-padding">
-                                                                    {{$quote->quote_number}}
+                                                                    {{$order->quote->quote_number}}
                                                                 </span>
 
                                                                 <!--[if (mso)|(IE)]></td><![endif]-->
@@ -506,7 +493,7 @@
                                                                 <span
                                                                     style="padding-right:65px;display:inline;color:#444444;font-family:arial black,avant garde,arial;font-size:16px"
                                                                     class="v-padding">
-                                                                    Quote Date
+                                                                    Status
                                                                 </span>
 
                                                                 <!--[if (mso)|(IE)]></td><![endif]-->
@@ -517,7 +504,7 @@
                                                                 <span style="padding-left:65px;display:inline;color:#444444;font-family:arial
                                                                     black,avant garde,arial;font-size:16px"
                                                                     class="v-padding">
-                                                                    {{\carbon\carbon::parse($quote->created_at)->format('d/m/Y')}}
+                                                                    Paid
                                                                 </span>
 
                                                                 <!--[if (mso)|(IE)]></td><![endif]-->
@@ -643,7 +630,8 @@
                                                                         @php
                                                                         $item_total = [];
                                                                         @endphp
-                                                                        @foreach ($quote->quote_item as $key => $item)
+                                                                        @foreach ($order->quote->quote_item as $key =>
+                                                                        $item)
                                                                         @php
                                                                         $item_total[$key] = ($item->price);
                                                                         @endphp
@@ -705,7 +693,7 @@
                                                                                 Shipping:
                                                                             </td>
                                                                             <td style="text-align: center">
-                                                                                ${{number_format($quote->shipping_amount, 2)}}
+                                                                                ${{number_format($order->quote->shipping_amount, 2)}}
                                                                             </td>
                                                                         </tr>
                                                                         <tr class="item_tr2">
@@ -713,7 +701,7 @@
                                                                                 Sub-Total:
                                                                             </td>
                                                                             <td style="text-align: center">
-                                                                                ${{number_format(array_sum($item_total) + $quote->shipping_amount, 2)}}
+                                                                                ${{number_format(array_sum($item_total) + $order->quote->shipping_amount, 2)}}
                                                                             </td>
                                                                         </tr>
                                                                         <tr class="item_tr2">
@@ -721,7 +709,7 @@
                                                                                 GST:
                                                                             </td>
                                                                             <td style="text-align: center">
-                                                                                ${{number_format((array_sum($item_total) + $quote->shipping_amount) * (10/100), 2)}}
+                                                                                ${{number_format((array_sum($item_total) + $order->quote->shipping_amount) * (10/100), 2)}}
                                                                             </td>
                                                                         </tr>
                                                                         <tr class="item_tr2">
@@ -729,79 +717,12 @@
                                                                                 Total:
                                                                             </td>
                                                                             <td style="text-align: center">
-                                                                                ${{number_format(array_sum($item_total) + $quote->shipping_amount + (( array_sum($item_total)+ $quote->shipping_amount ) * (10/100)), 2)}}
+                                                                                ${{number_format(array_sum($item_total) + $order->quote->shipping_amount + (( array_sum($item_total)+ $order->quote->shipping_amount ) * (10/100)), 2)}}
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
 
-                                                                <!--[if (mso)|(IE)]></td><![endif]-->
-
-
-                                                                <!--[if (mso)|(IE)]></tr></table><![endif]-->
-                                                            </div>
-
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-
-                                            <!--[if (!mso)&(!IE)]><!-->
-                                        </div>
-                                        <!--<![endif]-->
-                                    </div>
-                                </div>
-                                <!--[if (mso)|(IE)]></td><![endif]-->
-                                <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="u-row-container" style="padding: 0px;background-color: transparent">
-                        <div class="u-row"
-                            style="padding:20px 0;margin: 0 auto;min-width: 320px;max-width: 640px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #fff;">
-                            <div
-                                style="border-collapse: collapse;display: table;width: 100%;background-color: transparent;">
-                                <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:640px;"><tr style="background-color: #242424;"><![endif]-->
-
-                                <!--[if (mso)|(IE)]><td align="center" width="640" style="width: 640px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;" valign="top"><![endif]-->
-                                <div class="u-col u-col-100"
-                                    style="max-width: 320px;min-width: 640px;display: table-cell;vertical-align: top;">
-                                    <div style="width: 100% !important;">
-                                        <!--[if (!mso)&(!IE)]><!-->
-                                        <div
-                                            style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;">
-                                            <!--<![endif]-->
-
-                                            <table id="u_content_menu_1" style="font-family:arial,helvetica,sans-serif;"
-                                                role="presentation" cellpadding="0" cellspacing="0" width="100%"
-                                                border="0">
-                                                <tbody>
-                                                    <tr>
-                                                        <td style="overflow-wrap:break-word;word-break:break-word;padding:15px 10px;font-family:arial,helvetica,sans-serif;"
-                                                            align="left">
-
-                                                            <div class="menu" style="text-align:center">
-                                                                <!--[if (mso)|(IE)]><table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center"><tr><![endif]-->
-
-                                                                <!--[if (mso)|(IE)]><td style="padding:5px 120px"><![endif]-->
-
-                                                                <span
-                                                                    style="padding:0;display:inline;color:#000;font-family:arial black,avant garde,arial;font-size:16px"
-                                                                    class="v-padding">
-                                                                    <a class="btn btn-primary" target="_blank"
-                                                                        href="{{route('public.quote.accept', $quote->id)}}">Accept</a>
-                                                                </span>
-                                                                &nbsp;
-                                                                &nbsp;
-                                                                &nbsp;
-                                                                &nbsp;
-                                                                <span
-                                                                    style="padding:0;display:inline;color:#000;font-family:arial black,avant garde,arial;font-size:16px"
-                                                                    class="v-padding">
-                                                                    <a class="btn btn-danger" target="_blank"
-                                                                        href="{{route('public.quote.decline', $quote->id)}}">Decline</a>
-                                                                </span>
                                                                 <!--[if (mso)|(IE)]></td><![endif]-->
 
 

@@ -80,6 +80,12 @@
                                             </a>
                                             <div class="dropdown-divider responsive-moblile">
                                             </div>
+                                            <a class="dropdown-item"
+                                                href="{{route('admin.offer.quote.send.mail', $quote->id)}}">
+                                                <i class="fa fa-paper-plane text-primary"></i>&nbsp;Send Mail
+                                            </a>
+                                            <div class="dropdown-divider responsive-moblile">
+                                            </div>
                                             <a class="dropdown-item {{$quote->order ? 'disabled':'delete-btn'}}"
                                                 data-id="{{$quote->id}}" href="javascript:void(0)">
                                                 <i class="fa fa-trash text-danger"></i>&nbsp;Delete
