@@ -13,6 +13,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">Product</th>
+                                <th scope="col">Quantity</th>
                                 <th scope="col">Subtotal</th>
                             </tr>
                         </thead>
@@ -27,6 +28,9 @@
                                     {{$item->description}}
                                 </td>
                                 <td>
+                                    {{$item->quantity}}
+                                </td>
+                                <td>
                                     ${{number_format($item_total[$key], 2)}}
                                 </td>
                             </tr>
@@ -36,6 +40,7 @@
                             $quote->shipping_amount) * (10/100));
                             @endphp
                             <tr>
+                                <td></td>
                                 <th>
                                     Shipping:
                                 </th>
@@ -44,6 +49,7 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td></td>
                                 <th>
                                     Sub-Total:
                                 </th>
@@ -52,6 +58,7 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td></td>
                                 <th>
                                     GST:
                                 </th>
@@ -60,6 +67,7 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td></td>
                                 <th>
                                     Total:
                                 </th>

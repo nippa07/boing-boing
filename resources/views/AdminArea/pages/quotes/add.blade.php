@@ -75,21 +75,20 @@
                             <div class="form-group">
                                 <label for="name">Address</label>
                                 <input id="address" type="text" name="address"
-                                    class="form-control form-control-alternative" required>
+                                    class="form-control form-control-alternative">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="name">City</label>
-                                <input id="city" type="text" name="city" class="form-control form-control-alternative"
-                                    required>
+                                <input id="city" type="text" name="city" class="form-control form-control-alternative">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="name">Postal Code</label>
                                 <input id="postal_code" type="text" name="postal_code"
-                                    class="form-control form-control-alternative" required>
+                                    class="form-control form-control-alternative">
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -109,7 +108,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="name">State</label>
-                                <select class="form-control" id="state" name="state" required>
+                                <select class="form-control" id="state" name="state">
                                     <option></option>
                                     @foreach($countries as $sn => $state)
                                     <option value="{{ $sn }}">{{ $state }}</option>
