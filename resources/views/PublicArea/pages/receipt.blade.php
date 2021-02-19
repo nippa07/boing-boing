@@ -94,7 +94,9 @@
                                         </td>
                                     </tr>
                                 </table>
-
+                            </div>
+                            <div class="text-center">
+                                <span>You will receive the invoice on your email.</span>
                             </div>
                             <hr>
                             @if ($order->status == \App\Models\Order::STATUS['PAID'])

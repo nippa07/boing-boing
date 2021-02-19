@@ -25,6 +25,11 @@ class QuoteService
         return $this->quote->getQuoteByQuoteNumber($quote_number);
     }
 
+    public function getLastQuote()
+    {
+        return $this->quote->getLastQuote();
+    }
+
     public function getAll()
     {
         return $this->quote->all();
@@ -83,10 +88,18 @@ class QuoteService
 
     protected function getQuoteNumber()
     {
-        $quote_number = "ORD-" . str_pad(rand(0, pow(10, 5) - 1), 5, '0', STR_PAD_LEFT);
-        $new_event = $this->getQuoteByQuoteNumber($quote_number);
+        $last_quote = $this->getLastQuote();
 
-        if ($new_event) {
+        if ($last_quote) {
+            $quote_number = "ORD-" . sprintf("%'.05d\n", 1);
+        } else {
+            $quote_number = "ORD-" . sprintf("%'.05d\n", $last_quote->id + 1);
+        }
+
+
+        $new_quote = $this->getQuoteByQuoteNumber($quote_number);
+
+        if ($new_quote) {
             return $this->getQuoteNumber();
         } else {
             return $quote_number;
