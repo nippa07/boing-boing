@@ -31,6 +31,14 @@
         <div class="card">
             <div class="card-body">
                 <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="name">Order Number</label>
+                            <input id="first_name" type="text" name="first_name"
+                                class="form-control form-control-alternative" value="{{$order->quote->quote_number}}"
+                                readonly>
+                        </div>
+                    </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="name">First Name</label>

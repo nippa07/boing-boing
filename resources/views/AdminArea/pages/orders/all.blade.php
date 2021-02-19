@@ -31,6 +31,7 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Completion Status</th>
+                                <th>Order #</th>
                                 <th>Payment Type</th>
                                 <th>Status</th>
                                 <th>Created At</th>
@@ -57,6 +58,7 @@
                                     -
                                     @endswitch
                                 </td>
+                                <td>#{{$order->quote->quote_number}}</td>
                                 <td>
                                     @switch($order->payment_type)
                                     @case(\App\Models\Order::PAYMENT_TYPE['PAYPAL'])
