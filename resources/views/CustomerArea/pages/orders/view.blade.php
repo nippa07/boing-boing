@@ -122,7 +122,7 @@
                     @foreach ($order->quote->quote_item as $key => $item)
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <h6><strong>Item {{$key}}</strong></h6>
+                            <h6><strong>Item {{$key+1}}</strong></h6>
                             <label for="name">Name</label>
                             <input id="name" type="text" name="name[]" class="form-control form-control-alternative"
                                 value="{{$item->name}}" readonly>

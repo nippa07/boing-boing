@@ -24,8 +24,50 @@
                             @endphp
                             <tr class="item_tr">
                                 <td>
-                                    {{$item->name}} <br>
                                     {{$item->description}}
+                                    @if ($item->description)
+                                    <br>
+                                    @endif
+                                    Type: @switch($item->type)
+                                    @case(\App\Models\QuoteItem::TYPE['BUMPER_STICKERS'])
+                                    Bumper Stickers
+                                    @break
+                                    @case(\App\Models\QuoteItem::TYPE['VINYL_STICKERS'])
+                                    Vinyl Stickers
+                                    @break
+                                    @case(\App\Models\QuoteItem::TYPE['CLEAR_VINYL_STICKERS'])
+                                    Clear Vinyl Stickers
+                                    @break
+                                    @case(\App\Models\QuoteItem::TYPE['CLEAR_VINYL_STICKERS_WITH_WHITE_INK'])
+                                    Clear Vinyl Stickers With White Ink
+                                    @break
+                                    @case(\App\Models\QuoteItem::TYPE['HIGH_TRACK_STICKERS'])
+                                    High Track Stickers
+                                    @break
+                                    @case(\App\Models\QuoteItem::TYPE['BLOCKOUT_VINYL_STICKERS'])
+                                    Blockout Vinyl Stickers
+                                    @break
+                                    @case(\App\Models\QuoteItem::TYPE['GOLD_SILVER_VINYL_STICKERS'])
+                                    Gold/Silver Vinyl Stickers
+                                    @break
+                                    @default
+                                    @endswitch
+                                    <br>
+                                    Turnaround Time: @switch($item->t_time)
+                                    @case(\App\Models\QuoteItem::TURNAROUND_TIME['1_2_DAYS'])
+                                    1-2 Days
+                                    @break
+                                    @case(\App\Models\QuoteItem::TURNAROUND_TIME['2_3_DAYS'])
+                                    2-3 Days
+                                    @break
+                                    @case(\App\Models\QuoteItem::TURNAROUND_TIME['3_5_DAYS'])
+                                    3-5 Days
+                                    @break
+                                    @case(\App\Models\QuoteItem::TURNAROUND_TIME['5_7_DAYS'])
+                                    5-7 Days
+                                    @break
+                                    @default
+                                    @endswitch
                                 </td>
                                 <td>
                                     {{$item->quantity}}

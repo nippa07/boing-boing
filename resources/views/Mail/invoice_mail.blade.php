@@ -637,8 +637,10 @@
                                                                         @endphp
                                                                         <tr class="item_tr">
                                                                             <td style="text-align: left;">
-                                                                                {{$item->name}} <br>
-                                                                                {{$item->description}} <br>
+                                                                                {{$item->description}}
+                                                                                @if ($item->description)
+                                                                                <br>
+                                                                                @endif
                                                                                 Type: @switch($item->type)
                                                                                 @case(\App\Models\QuoteItem::TYPE['BUMPER_STICKERS'])
                                                                                 Bumper Stickers
