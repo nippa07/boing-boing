@@ -62,11 +62,11 @@ class QuoteItemService
     {
         $data['quote_id'] = $quote->id;
 
-        for ($i = 0; $i < count($form_data['name']); $i++) {
-            $data['name'] = $form_data['name'][$i];
+        for ($i = 0; $i < count($form_data['quantity']); $i++) {
+            // $data['name'] = $form_data['name'][$i];
             $data['quantity'] = $form_data['quantity'][$i];
             $data['price'] = $form_data['price'][$i];
-            $data['description'] = $form_data['description'][$i];
+            $data['description'] = $form_data['description'][$i] ? $form_data['description'][$i] : '';
             $data['type'] = $form_data['type'][$i];
             $data['t_time'] = $form_data['t_time'][$i];
 

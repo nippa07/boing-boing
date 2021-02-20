@@ -135,16 +135,9 @@
                                 <h3> <strong>Add Items</strong></h3>
                             </div>
                         </div>
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <h6><strong>Item 1</strong></h6>
-                                <label for="name">Name</label>
-                                <input id="name" type="text" name="name[]" class="form-control form-control-alternative"
-                                    required>
-                            </div>
-                        </div>
                         <div class="col-lg-6">
                             <div class="form-group">
+                                <h6><strong>Item 1</strong></h6>
                                 <label for="name">Sticker Type</label>
                                 <select class="form-control" name="type[]" id="type" required>
                                     <option></option>
@@ -175,6 +168,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
+                                <h6><strong>&nbsp;</strong></h6>
                                 <label for="name">Turnaround Time</label>
                                 <select class="form-control" name="t_time[]" id="t_time" required>
                                     <option></option>
@@ -210,7 +204,7 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="name">Description</label>
-                                <textarea class="form-control" name="description[]" rows="3" required></textarea>
+                                <textarea class="form-control" name="description[]" rows="3"></textarea>
                             </div>
                         </div>
                         <div id="extra_items" class="col-lg-12 px-0">
@@ -306,11 +300,57 @@
         items++;
         var html = "";
         html = '<div class="item_' + items + '">' +
-            '<div class="col-lg-12">' +
+            '<div class="row mx-0">' +
+            '<div class="col-lg-6">' +
             '<div class="form-group">' +
             '<h6><strong>Item ' + items + '</strong></h6>' +
-            '<label for="name">Name</label>' +
-            '<input id="name" type="text" name="name[]" class="form-control form-control-alternative" required>' +
+            '<label for="name">Sticker Type</label>' +
+            '<select class="form-control" name="type[]" id="type" required>' +
+            '<option></option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TYPE['BUMPER_STICKERS']}}" + '">' +
+            'Bumper Stickers' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TYPE['VINYL_STICKERS']}}" + '">' +
+            'Vinyl Stickers' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TYPE['CLEAR_VINYL_STICKERS']}}" + '">' +
+            'Clear Vinyl Stickers' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TYPE['CLEAR_VINYL_STICKERS_WITH_WHITE_INK']}}" + '">' +
+            'Clear Vinyl Stickers With White INK' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TYPE['HIGH_TRACK_STICKERS']}}" + '">' +
+            'High Tack Stickers' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TYPE['BLOCKOUT_VINYL_STICKERS']}}" + '">' +
+            'Blockout Vinyl Stickers' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TYPE['GOLD_SILVER_VINYL_STICKERS']}}" + '">' +
+            'Gold / Silver Vinyl Stickers' +
+            '</option>' +
+            '</select>' +
+            '</div>' +
+            '</div>' +
+            '<div class="col-lg-6">' +
+            '<div class="form-group">' +
+            '<h6><strong>&nbsp;</strong></h6>' +
+            '<label for="name">Turnaround Time</label>' +
+            '<select class="form-control" name="t_time[]" id="t_time" required>' +
+            '<option></option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TURNAROUND_TIME['1_2_DAYS']}}" + '">' +
+            '1-2 Days' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TURNAROUND_TIME['2_3_DAYS']}}" + '">' +
+            '2-3 Days' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TURNAROUND_TIME['3_5_DAYS']}}" + '">' +
+            '3-5 Days' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TURNAROUND_TIME['5_7_DAYS']}}" + '">' +
+            '5-7 Days' +
+            '</option>' +
+            '</select>' +
+            '</div>' +
             '</div>' +
             '</div>' +
             '<div class="row mx-0">' +
@@ -330,7 +370,7 @@
             '<div class="col-lg-12">' +
             '<div class="form-group">' +
             '<label for="name">Description</label>' +
-            '<textarea class="form-control" name="description[]" rows="3" required></textarea>' +
+            '<textarea class="form-control" name="description[]" rows="3"></textarea>' +
             '</div>' +
             '</div>' +
             '</div>';

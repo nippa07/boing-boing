@@ -56,7 +56,6 @@ Route::prefix('/')->namespace('PublicArea')->group(function () {
 Route::prefix('/admin')->namespace('AdminArea')->group(function () {
 
     Route::get('/', 'HomeController@index')->name('admin.index');
-    Route::get('/', 'HomeController@index')->name('admin.index');
 
     Route::prefix('/custom/offer')->group(function () {
         Route::get('/', 'CustomOfferController@all')->name('admin.custom.offer.all');

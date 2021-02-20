@@ -4,7 +4,7 @@
 <div class="main-header" data-background-color="blue">
     <!-- Logo Header -->
     <div class="logo-header">
-        <a href="index.html" class="logo">
+        <a href="{{route('admin.index')}}" class="logo">
             <img src="{{asset('assets/img/logo.webp')}}" alt="navbar brand" class="navbar-brand" width="70%">
         </a>
         <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"

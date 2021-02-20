@@ -134,16 +134,9 @@
                         </div>
                     </div>
                     @foreach ($quote->quote_item as $key => $item)
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <h6><strong>Item {{$key}}</strong></h6>
-                            <label for="name">Name</label>
-                            <input id="name" type="text" name="name[]" class="form-control form-control-alternative"
-                                value="{{$item->name}}" readonly>
-                        </div>
-                    </div>
                     <div class="col-lg-6">
                         <div class="form-group">
+                            <h6><strong>Item {{$key+1}}</strong></h6>
                             <label for="name">Sticker Type</label>
                             <select class="form-control" name="type[]" id="type" disabled>
                                 <option></option>
@@ -180,6 +173,7 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
+                            <h6><strong>&nbsp;</strong></h6>
                             <label for="name">Turnaround Time</label>
                             <select class="form-control" name="t_time[]" id="t_time" disabled>
                                 <option></option>

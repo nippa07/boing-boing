@@ -128,12 +128,66 @@
                         </div>
                     </div>
                     @foreach ($order->quote->quote_item as $key => $item)
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
                         <div class="form-group">
-                            <h6><strong>Item {{$key}}</strong></h6>
-                            <label for="name">Name</label>
-                            <input id="name" type="text" name="name[]" class="form-control form-control-alternative"
-                                value="{{$item->name}}" readonly>
+                            <h6><strong>Item {{$key+1}}</strong></h6>
+                            <label for="name">Sticker Type</label>
+                            <select class="form-control" name="type[]" id="type" disabled>
+                                <option></option>
+                                <option value="{{\App\Models\QuoteItem::TYPE['BUMPER_STICKERS']}}"
+                                    {{$item->type == \App\Models\QuoteItem::TYPE['BUMPER_STICKERS'] ? 'selected':''}}>
+                                    Bumper Stickers
+                                </option>
+                                <option value="{{\App\Models\QuoteItem::TYPE['VINYL_STICKERS']}}"
+                                    {{$item->type == \App\Models\QuoteItem::TYPE['VINYL_STICKERS'] ? 'selected':''}}>
+                                    Vinyl Stickers
+                                </option>
+                                <option value="{{\App\Models\QuoteItem::TYPE['CLEAR_VINYL_STICKERS']}}"
+                                    {{$item->type == \App\Models\QuoteItem::TYPE['CLEAR_VINYL_STICKERS'] ? 'selected':''}}>
+                                    Clear Vinyl Stickers
+                                </option>
+                                <option value="{{\App\Models\QuoteItem::TYPE['CLEAR_VINYL_STICKERS_WITH_WHITE_INK']}}"
+                                    {{$item->type == \App\Models\QuoteItem::TYPE['CLEAR_VINYL_STICKERS_WITH_WHITE_INK'] ? 'selected':''}}>
+                                    Clear Vinyl Stickers With White INK
+                                </option>
+                                <option value="{{\App\Models\QuoteItem::TYPE['HIGH_TRACK_STICKERS']}}"
+                                    {{$item->type == \App\Models\QuoteItem::TYPE['HIGH_TRACK_STICKERS'] ? 'selected':''}}>
+                                    High Tack Stickers
+                                </option>
+                                <option value="{{\App\Models\QuoteItem::TYPE['BLOCKOUT_VINYL_STICKERS']}}"
+                                    {{$item->type == \App\Models\QuoteItem::TYPE['BLOCKOUT_VINYL_STICKERS'] ? 'selected':''}}>
+                                    Blockout Vinyl
+                                    Stickers</option>
+                                <option value="{{\App\Models\QuoteItem::TYPE['GOLD_SILVER_VINYL_STICKERS']}}"
+                                    {{$item->type == \App\Models\QuoteItem::TYPE['GOLD_SILVER_VINYL_STICKERS'] ? 'selected':''}}>
+                                    Gold / Silver Vinyl Stickers
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <h6><strong>&nbsp;</strong></h6>
+                            <label for="name">Turnaround Time</label>
+                            <select class="form-control" name="t_time[]" id="t_time" disabled>
+                                <option></option>
+                                <option value="{{\App\Models\QuoteItem::TURNAROUND_TIME['1_2_DAYS']}}"
+                                    {{$item->t_time == \App\Models\QuoteItem::TURNAROUND_TIME['1_2_DAYS'] ? 'selected':''}}>
+                                    1-2 Days
+                                </option>
+                                <option value="{{\App\Models\QuoteItem::TURNAROUND_TIME['2_3_DAYS']}}"
+                                    {{$item->t_time == \App\Models\QuoteItem::TURNAROUND_TIME['2_3_DAYS'] ? 'selected':''}}>
+                                    2-3 Days
+                                </option>
+                                <option value="{{\App\Models\QuoteItem::TURNAROUND_TIME['3_5_DAYS']}}"
+                                    {{$item->t_time == \App\Models\QuoteItem::TURNAROUND_TIME['3_5_DAYS'] ? 'selected':''}}>
+                                    3-5 Days
+                                </option>
+                                <option value="{{\App\Models\QuoteItem::TURNAROUND_TIME['5_7_DAYS']}}"
+                                    {{$item->t_time == \App\Models\QuoteItem::TURNAROUND_TIME['5_7_DAYS'] ? 'selected':''}}>
+                                    5-7 Days
+                                </option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-lg-6">

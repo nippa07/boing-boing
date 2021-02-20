@@ -91,9 +91,9 @@ class QuoteService
         $last_quote = $this->getLastQuote();
 
         if ($last_quote) {
-            $quote_number = "ORD-" . sprintf("%'.05d\n", 1);
-        } else {
             $quote_number = "ORD-" . sprintf("%'.05d\n", $last_quote->id + 1);
+        } else {
+            $quote_number = "ORD-" . sprintf("%'.05d\n", 1);
         }
 
 
