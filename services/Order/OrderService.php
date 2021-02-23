@@ -105,7 +105,7 @@ class OrderService
             }
         } else {
             $resp = PaypalFacade::makePayment($order, $data);
-            // dd($resp);
+
             if ($resp && $resp['paypal_link']) {
                 return ['status' => true, 'order' => $order, 'paypal_link' => $resp['paypal_link']];
             }
@@ -118,9 +118,9 @@ class OrderService
 
     public function paypalSuccess(Request $request, $id)
     {
-        $resp = PaypalFacade::checkSuccess($request, $id);
-
         $order = $this->get($id);
+
+        $resp = PaypalFacade::checkSuccess($request, $id);
 
         if ($resp && in_array(strtoupper($resp['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
             $order->transaction_id = $resp['CORRELATIONID'];
