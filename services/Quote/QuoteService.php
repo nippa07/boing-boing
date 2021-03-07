@@ -35,6 +35,11 @@ class QuoteService
         return $this->quote->all();
     }
 
+    public function getAllDesc()
+    {
+        return $this->quote->orderBy('created_at', 'desc')->get();
+    }
+
     public function create($data)
     {
         return $this->quote->create($data);
@@ -73,7 +78,11 @@ class QuoteService
     {
         $quote = $this->get($id);
 
-        return $this->update($quote, $data);
+        $this->update($quote, $data);
+
+        QuoteItemFacade::updateQuoteItem($quote, $data);
+
+        MailFacade::sendQuoteMail($quote);
     }
 
     public function make($data)
@@ -123,5 +132,12 @@ class QuoteService
         $quote = $this->get($id);
 
         MailFacade::sendQuoteMail($quote);
+    }
+
+    public function changeStatus($id, $status)
+    {
+        $quote = $this->get($id);
+        $quote->status = $status;
+        $quote->save();
     }
 }

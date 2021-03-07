@@ -431,9 +431,9 @@
                                                                 <!--[if (mso)|(IE)]><td style="padding:5px 110px 5px 100px"><![endif]-->
 
                                                                 <span
-                                                                    style="padding-right:40px;display:inline;color:#444444;font-family:arial black,avant garde,arial;font-size:16px"
+                                                                    style="padding-right:25px;display:inline;color:#444444;font-family:arial black,avant garde,arial;font-size:16px"
                                                                     class="v-padding">
-                                                                    Customer
+                                                                    Customer Name
                                                                 </span>
 
                                                                 <!--[if (mso)|(IE)]></td><![endif]-->
@@ -441,7 +441,7 @@
 
                                                                 <!--[if (mso)|(IE)]><td style="padding:5px 110px 5px 100px"><![endif]-->
 
-                                                                <span style="padding-left:40px;display:inline;color:#444444;font-family:arial
+                                                                <span style="padding-left:25px;display:inline;color:#444444;font-family:arial
                                                                     black,avant garde,arial;font-size:16px"
                                                                     class="v-padding">
                                                                     {{$order->first_name}}&nbsp;{{$order->last_name}}
@@ -468,6 +468,150 @@
                             </div>
                         </div>
                     </div>
+                    <div class="u-row-container" style="padding: 0px;background-color: transparent">
+                        <div class="u-row"
+                            style="Margin: 0 auto;min-width: 320px;max-width: 640px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;">
+                            <div
+                                style="border-collapse: collapse;display: table;width: 100%;background-color: transparent;">
+                                <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:640px;"><tr style="background-color: #ffffff;"><![endif]-->
+
+                                <!--[if (mso)|(IE)]><td align="center" width="640" style="width: 640px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;" valign="top"><![endif]-->
+                                <div class="u-col u-col-100"
+                                    style="max-width: 320px;min-width: 640px;display: table-cell;vertical-align: top;">
+                                    <div style="width: 100% !important;">
+                                        <!--[if (!mso)&(!IE)]><!-->
+                                        <div
+                                            style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;">
+                                            <!--<![endif]-->
+
+                                            <table id="u_content_menu_2" style="font-family:arial,helvetica,sans-serif;"
+                                                role="presentation" cellpadding="0" cellspacing="0" width="100%"
+                                                border="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="overflow-wrap:break-word;word-break:break-word;padding:15px 10px;font-family:arial,helvetica,sans-serif;"
+                                                            align="left">
+
+                                                            <div class="menu" style="text-align:center">
+                                                                <!--[if (mso)|(IE)]><table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center"><tr><![endif]-->
+
+                                                                <!--[if (mso)|(IE)]><td style="padding:5px 110px 5px 100px"><![endif]-->
+
+                                                                <span style="padding-right:24px;display:inline;color:#444444;font-family:arial
+                                                                    black,avant garde,arial;font-size:16px"
+                                                                    class="v-padding">
+                                                                    Email
+                                                                </span>
+
+                                                                <!--[if (mso)|(IE)]></td><![endif]-->
+
+
+                                                                <!--[if (mso)|(IE)]><td style="padding:5px 110px 5px 100px"><![endif]-->
+
+                                                                <span style="padding-left:24px;display:inline;color:#444444;font-family:arial
+                                                                    black,avant garde,arial;font-size:16px"
+                                                                    class="v-padding">
+                                                                    {{$order->email}}
+                                                                </span>
+
+                                                                <!--[if (mso)|(IE)]></td><![endif]-->
+
+
+                                                                <!--[if (mso)|(IE)]></tr></table><![endif]-->
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <!--[if (!mso)&(!IE)]><!-->
+                                        </div>
+                                        <!--<![endif]-->
+                                    </div>
+                                </div>
+                                <!--[if (mso)|(IE)]></td><![endif]-->
+                                <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="u-row-container" style="padding: 0px;background-color: transparent">
+                        <div class="u-row"
+                            style="Margin: 0 auto;min-width: 320px;max-width: 640px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;">
+                            <div
+                                style="border-collapse: collapse;display: table;width: 100%;background-color: transparent;">
+                                <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding: 0px;background-color: transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:640px;"><tr style="background-color: #ffffff;"><![endif]-->
+
+                                <!--[if (mso)|(IE)]><td align="center" width="640" style="width: 640px;padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;" valign="top"><![endif]-->
+                                <div class="u-col u-col-100"
+                                    style="max-width: 320px;min-width: 640px;display: table-cell;vertical-align: top;">
+                                    <div style="width: 100% !important;">
+                                        <!--[if (!mso)&(!IE)]><!-->
+                                        <div
+                                            style="padding: 0px;border-top: 0px solid transparent;border-left: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;">
+                                            <!--<![endif]-->
+
+                                            <table id="u_content_menu_2" style="font-family:arial,helvetica,sans-serif;"
+                                                role="presentation" cellpadding="0" cellspacing="0" width="100%"
+                                                border="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="overflow-wrap:break-word;word-break:break-word;padding:15px 10px;font-family:arial,helvetica,sans-serif;"
+                                                            align="left">
+
+                                                            <div class="menu" style="text-align:center">
+                                                                <!--[if (mso)|(IE)]><table role="presentation" border="0" cellpadding="0" cellspacing="0" align="center"><tr><![endif]-->
+
+                                                                <!--[if (mso)|(IE)]><td style="padding:5px 110px 5px 100px"><![endif]-->
+
+                                                                <span style="padding-right:55px;display:inline;color:#444444;font-family:arial
+                                                                    black,avant garde,arial;font-size:16px"
+                                                                    class="v-padding">
+                                                                    Payment Method
+                                                                </span>
+
+                                                                <!--[if (mso)|(IE)]></td><![endif]-->
+
+
+                                                                <!--[if (mso)|(IE)]><td style="padding:5px 110px 5px 100px"><![endif]-->
+
+                                                                <span style="padding-left:55px;display:inline;color:#444444;font-family:arial
+                                                                    black,avant garde,arial;font-size:16px"
+                                                                    class="v-padding">
+                                                                    @switch($order->payment_type)
+                                                                    @case(\App\Models\Order::PAYMENT_TYPE['PAYPAL'])
+                                                                    Paypal
+                                                                    @break
+                                                                    @case(\App\Models\Order::PAYMENT_TYPE['STRIPE'])
+                                                                    Stripe
+                                                                    @break
+                                                                    @default
+                                                                    @endswitch
+                                                                </span>
+
+                                                                <!--[if (mso)|(IE)]></td><![endif]-->
+
+
+                                                                <!--[if (mso)|(IE)]></tr></table><![endif]-->
+                                                            </div>
+
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                            <!--[if (!mso)&(!IE)]><!-->
+                                        </div>
+                                        <!--<![endif]-->
+                                    </div>
+                                </div>
+                                <!--[if (mso)|(IE)]></td><![endif]-->
+                                <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="u-row-container" style="padding: 0px;background-color: transparent">
                         <div class="u-row"
                             style="Margin: 0 auto;min-width: 320px;max-width: 640px;overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: #ffffff;">

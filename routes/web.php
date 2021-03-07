@@ -73,6 +73,9 @@ Route::prefix('/admin')->namespace('AdminArea')->group(function () {
         Route::get('/delete/{id}', 'QuoteController@delete')->name('admin.offer.quote.delete');
 
         Route::get('/send/mail/{id}', 'QuoteController@sendMail')->name('admin.offer.quote.send.mail');
+
+        Route::get('/accept/{id}', 'QuoteController@accept')->name('admin.offer.quote.accept');
+        Route::get('/decline/{id}', 'QuoteController@decline')->name('admin.offer.quote.decline');
     });
 
     Route::prefix('/orders')->group(function () {
@@ -105,10 +108,7 @@ Route::prefix('/customer')->namespace('CustomerArea')->group(function () {
         Route::get('/', 'OrderController@all')->name('customer.orders.all');
         Route::get('/add/{id?}', 'OrderController@add')->name('customer.orders.add');
         Route::post('/store', 'OrderController@store')->name('customer.orders.store');
-        Route::get('/edit/{id}', 'OrderController@edit')->name('customer.orders.edit');
         Route::get('/view/{id}', 'OrderController@view')->name('customer.orders.view');
-        Route::post('/update/{id}', 'OrderController@update')->name('customer.orders.update');
-        Route::get('/delete/{id}', 'OrderController@delete')->name('customer.orders.delete');
     });
 });
 

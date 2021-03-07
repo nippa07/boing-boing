@@ -73,4 +73,15 @@ class QuoteItemService
             $this->create($data);
         }
     }
+
+    public function updateQuoteItem(Quote $quote, $form_data)
+    {
+        if (count($form_data['quantity']) > 0) {
+            foreach ($quote->quote_item as $key => $quote_item) {
+                $quote_item->delete();
+            }
+        }
+
+        $this->make($quote, $form_data);
+    }
 }

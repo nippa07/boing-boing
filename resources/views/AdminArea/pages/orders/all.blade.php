@@ -98,16 +98,21 @@
                                             <a class="dropdown-item" href="{{route('admin.orders.view', $order->id)}}">
                                                 <i class="fa fa-eye text-secondary"></i>&nbsp;View
                                             </a>
+                                            @if ($order->admin_status != \App\Models\Order::ADMIN_STATUS['COMPLETED'])
                                             <div class="dropdown-divider responsive-moblile"></div>
                                             <a class="dropdown-item"
                                                 href="{{route('admin.orders.complete', $order->id)}}">
                                                 <i class="fa fa-check text-success"></i>&nbsp;Mark As Complete
                                             </a>
+                                            @endif
+                                            @if ($order->admin_status !=
+                                            \App\Models\Order::ADMIN_STATUS['IN_PRODUCTION'])
                                             <div class="dropdown-divider responsive-moblile"></div>
                                             <a class="dropdown-item"
                                                 href="{{route('admin.orders.in_production', $order->id)}}">
                                                 <i class="fa fa-spinner text-info"></i>&nbsp;Mark As In Production
                                             </a>
+                                            @endif
                                             <div class="dropdown-divider responsive-moblile"></div>
                                             <a class="dropdown-item delete-btn" data-id="{{$order->id}}"
                                                 href="javascript:void(0)">

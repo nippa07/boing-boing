@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use CountryState;
+use services\Facade\OrderFacade;
 use services\Facade\QuoteFacade;
 
 class CommonController extends Controller
@@ -20,7 +21,8 @@ class CommonController extends Controller
 
     public function mailTest()
     {
-        $response['quote'] = QuoteFacade::get(1);
-        return view('Mail.quote_mail')->with($response);
+        // $response['quote'] = QuoteFacade::get(9);
+        $response['order'] = OrderFacade::get(20);
+        return view('Mail.order_mail')->with($response);
     }
 }
