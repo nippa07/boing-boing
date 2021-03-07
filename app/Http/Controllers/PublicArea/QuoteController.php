@@ -5,6 +5,7 @@ namespace App\Http\Controllers\PublicArea;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Quote;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use services\Facade\QuoteFacade;
 use CountryState;
@@ -83,5 +84,23 @@ class QuoteController extends Controller
         $order = OrderFacade::paypalCancel($id);
 
         return redirect(route('public.quote.checkout', $order->quote_id))->with('alert-danger', "Payment Canceled!");
+    }
+
+    public function pdfDownload($id)
+    {
+        $response['order'] = OrderFacade::get($id);
+
+        $pdf = PDF::loadView('PublicArea.pages.order_pdf', $response);
+
+        return $pdf->download('order.pdf');
+    }
+
+    public function pdfPrint($id)
+    {
+        $response['order'] = OrderFacade::get($id);
+
+        $pdf = PDF::loadView('PublicArea.pages.order_pdf', $response);
+
+        return $pdf->stream('order.pdf');
     }
 }

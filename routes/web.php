@@ -43,6 +43,9 @@ Route::prefix('/')->namespace('PublicArea')->group(function () {
 
     Route::get('/paypal/success/{id}', 'QuoteController@paypalSuccess')->name('public.paypal.success');
     Route::get('/paypal/cancel/{id}', 'QuoteController@paypalCancel')->name('public.paypal.cancel');
+
+    Route::get('/pdf/download/{id}', 'QuoteController@pdfDownload')->name('public.pdf.download');
+    Route::get('/pdf/print/{id}', 'QuoteController@pdfPrint')->name('public.pdf.print');
 });
 
 /*
