@@ -86,4 +86,9 @@ class QuoteController extends ParentController
 
         return redirect()->back()->with('alert-success', "Quote Marked As Declined!");
     }
+
+    public function getQuoteFromMail(Request $request)
+    {
+        return QuoteFacade::getQuoteFromMail($request->email);
+    }
 }

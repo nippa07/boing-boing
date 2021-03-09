@@ -25,6 +25,11 @@ class QuoteService
         return $this->quote->getQuoteByQuoteNumber($quote_number);
     }
 
+    public function getQuoteFromMail($email)
+    {
+        return $this->quote->getQuoteFromMail($email);
+    }
+
     public function getLastQuote()
     {
         return $this->quote->getLastQuote();

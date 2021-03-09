@@ -60,7 +60,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="name">Phone</label>
-                                <input type="text" name="phone" class="form-control form-control-alternative"
+                                <input id="phone" type="text" name="phone" class="form-control form-control-alternative"
                                     pattern="[0-9]*" value="{{$custom_offer?$custom_offer->phone:''}}" required>
                             </div>
                         </div>
@@ -276,7 +276,7 @@
         getStates();
     });
 
-    function getStates() {
+    function getStates(sel_state = null) {
         var country = $('#country').val();
         $.ajax({
             url: "{{ route('get.states') }}?country=" + country,
@@ -287,7 +287,8 @@
             success: function (response) {
                 var html = "";
                 $.each(response, function (key, state) {
-                    html += "<option value='" + key + "'>" +
+                    html += "<option value='" + key + "'" + (sel_state && sel_state == key ?
+                            'selected' : '') + ">" +
                         state + "</option>";
                 });
 
@@ -383,6 +384,34 @@
             $('.item_' + items).html('');
             items--;
         }
+    }
+
+    $('#email').on('input', function () {
+        var email = $(this).val();
+
+        autoFill(email);
+    });
+
+    function autoFill(email) {
+        $.ajax({
+            url: "{{ route('admin.offer.quote.get.mail') }}?email=" + email,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'GET',
+            success: function (response) {
+                if (response) {
+                    $('#first_name').val(response.first_name);
+                    $('#last_name').val(response.last_name);
+                    $('#phone').val(response.phone);
+                    $('#company').val(response.company);
+                    $('#address').val(response.address);
+                    $('#city').val(response.city);
+                    $('#postal_code').val(response.postal_code);
+                    getStates(response.state);
+                }
+            }
+        });
     }
 
 </script>
