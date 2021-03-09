@@ -48,6 +48,11 @@ class Quote extends Model
         return $this->where('quote_number', $quote_number)->first();
     }
 
+    public function getQuoteFromMail($email)
+    {
+        return $this->where('email', $email)->first();
+    }
+
     public function getLastQuote()
     {
         return $this->latest('created_at')->first();

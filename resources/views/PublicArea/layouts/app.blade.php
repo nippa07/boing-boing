@@ -24,6 +24,7 @@
         @yield('content')
     </section>
 
+    @include('PublicArea.includes.footer')
     @include('PublicArea.includes.js')
 </body>
 

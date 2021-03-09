@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminArea;
 
 use App\Http\Controllers\Controller;
+use App\Models\Quote;
 use Illuminate\Http\Request;
 use services\Facade\QuoteFacade;
 use services\Facade\QuoteRequestFacade;
@@ -12,7 +13,7 @@ class QuoteController extends ParentController
 {
     public function all()
     {
-        $response['quotes'] = QuoteFacade::getAll();
+        $response['quotes'] = QuoteFacade::getAllDesc();
 
         return view('AdminArea.pages.quotes.all')->with($response);
     }
@@ -38,6 +39,7 @@ class QuoteController extends ParentController
     public function edit($id)
     {
         $response['quote'] = QuoteFacade::get($id);
+        $response['countries'] = CountryState::getCountries();
 
         return view('AdminArea.pages.quotes.edit')->with($response);
     }
@@ -69,5 +71,24 @@ class QuoteController extends ParentController
         QuoteFacade::sendMail($id);
 
         return redirect()->back()->with('alert-success', "Offer Quote Mail Sent Successfully!");
+    }
+
+    public function accept($id)
+    {
+        QuoteFacade::changeStatus($id, Quote::STATUS['ACCEPTED']);
+
+        return redirect()->back()->with('alert-success', "Quote Marked As Accepted!");
+    }
+
+    public function decline($id)
+    {
+        QuoteFacade::changeStatus($id, Quote::STATUS['DECLINED']);
+
+        return redirect()->back()->with('alert-success', "Quote Marked As Declined!");
+    }
+
+    public function getQuoteFromMail(Request $request)
+    {
+        return QuoteFacade::getQuoteFromMail($request->email);
     }
 }

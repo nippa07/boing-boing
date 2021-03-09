@@ -8,9 +8,9 @@
 @yield('css')
 
 <style>
-    body {
-        background: url("{{asset('assets/img/bg_kiwi.png')}}");
-
+    .social-links a {
+        text-decoration: none;
+        color: black;
     }
 
 </style>

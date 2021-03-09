@@ -31,6 +31,18 @@
         <div class="card">
             <div class="card-body">
                 <div class="row justify-content-center">
+                    <div class="col-lg-12 text-right">
+                        <div class="form-group">
+                            <a class="btn btn-sm btn-primary" href="{{route('public.pdf.download', $order->id)}}"
+                                data-toggle="tooltip" title="Download As PDF">
+                                <i class="fa fa-download"></i>
+                            </a>
+                            <a class="btn btn-sm btn-danger" target="_blank"
+                                href="{{route('public.pdf.print', $order->id)}}" data-toggle="tooltip" title="Print">
+                                <i class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label for="name">Order Number</label>

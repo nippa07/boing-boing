@@ -4,7 +4,10 @@
 <div class="container">
     <div class="row py-4 justify-content-center">
         <div class="col-lg-9 mt-4">
-            <div class="card shadow">
+            <a href="{{url('/')}}" class="btn btn-primary">
+                <i class="fas fa-home" data-toggle="tooltip" title="Back to home"></i>
+            </a>
+            <div class="card shadow mt-4">
                 <div class="card-body">
                     <h5 class="card-title text-center">
                         <img src="{{asset('PublicArea/img/logo.webp')}}" alt="logo" style="max-width: 15rem;">

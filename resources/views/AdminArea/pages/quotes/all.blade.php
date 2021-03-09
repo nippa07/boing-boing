@@ -81,9 +81,29 @@
                                             <div class="dropdown-divider responsive-moblile">
                                             </div>
                                             <a class="dropdown-item"
+                                                href="{{route('admin.offer.quote.edit', $quote->id)}}">
+                                                <i class="fa fa-edit text-info"></i>&nbsp;Edit
+                                            </a>
+                                            <div class="dropdown-divider responsive-moblile">
+                                            </div>
+                                            <a class="dropdown-item"
                                                 href="{{route('admin.offer.quote.send.mail', $quote->id)}}">
                                                 <i class="fa fa-paper-plane text-primary"></i>&nbsp;Send Mail
                                             </a>
+                                            @if ($quote->status != \App\Models\Quote::STATUS['ACCEPTED'])
+                                            <div class="dropdown-divider responsive-moblile"></div>
+                                            <a class="dropdown-item"
+                                                href="{{route('admin.offer.quote.accept', $quote->id)}}">
+                                                <i class="fa fa-check text-success"></i>&nbsp;Mark Accepted
+                                            </a>
+                                            @endif
+                                            @if ($quote->status != \App\Models\Quote::STATUS['DECLINED'])
+                                            <div class="dropdown-divider responsive-moblile"></div>
+                                            <a class="dropdown-item"
+                                                href="{{route('admin.offer.quote.decline', $quote->id)}}">
+                                                <i class="fa fa-times text-danger"></i>&nbsp;&nbsp;Mark Declined
+                                            </a>
+                                            @endif
                                             <div class="dropdown-divider responsive-moblile">
                                             </div>
                                             <a class="dropdown-item {{$quote->order ? 'disabled':'delete-btn'}}"
