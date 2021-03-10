@@ -586,6 +586,9 @@
                                                                     @case(\App\Models\Order::PAYMENT_TYPE['STRIPE'])
                                                                     Stripe
                                                                     @break
+                                                                    @case(\App\Models\Order::PAYMENT_TYPE['AFTERPAY'])
+                                                                    Afterpay
+                                                                    @break
                                                                     @default
                                                                     @endswitch
                                                                 </span>

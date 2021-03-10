@@ -67,6 +67,9 @@
                                     @case(\App\Models\Order::PAYMENT_TYPE['STRIPE'])
                                     <span>Stripe Payment</span>
                                     @break
+                                    @case(\App\Models\Order::PAYMENT_TYPE['AFTERPAY'])
+                                    <span>Afterpay Payment</span>
+                                    @break
                                     @default
                                     @endswitch
                                 </td>

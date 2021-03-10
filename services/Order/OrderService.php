@@ -85,32 +85,41 @@ class OrderService
             $order = $this->create($data);
         }
 
-        if ($data['payment_type'] == Order::PAYMENT_TYPE['STRIPE']) {
-            $resp = StripeFacade::makePayment($order, $data);
+        switch ($data['payment_type']) {
+            case Order::PAYMENT_TYPE['STRIPE']:
+                $resp = StripeFacade::makePayment($order, $data);
 
-            if ($resp) {
-                $order->transaction_id = $resp;
-                $order->status = Order::STATUS['PAID'];
-                $order->save();
+                if ($resp) {
+                    $order->transaction_id = $resp;
+                    $order->status = Order::STATUS['PAID'];
+                    $order->save();
 
-                MailFacade::sendOrderMail($order);
-                MailFacade::sendInvoiceMail($order);
+                    MailFacade::sendOrderMail($order);
+                    MailFacade::sendInvoiceMail($order);
 
-                return ['status' => true, 'order' => $order, 'paypal_link' => null];
-            } else {
-                $order->status = Order::STATUS['FAILED'];
-                $order->save();
+                    return ['status' => true, 'order' => $order, 'paypal_link' => null];
+                } else {
+                    $order->status = Order::STATUS['FAILED'];
+                    $order->save();
+
+                    return ['status' => false, 'order' => $order, 'paypal_link' => null];
+                }
+                break;
+            case Order::PAYMENT_TYPE['PAYPAL']:
+                $resp = PaypalFacade::makePayment($order, $data);
+
+                if ($resp && $resp['paypal_link']) {
+                    return ['status' => true, 'order' => $order, 'paypal_link' => $resp['paypal_link']];
+                }
 
                 return ['status' => false, 'order' => $order, 'paypal_link' => null];
-            }
-        } else {
-            $resp = PaypalFacade::makePayment($order, $data);
+                break;
+            case Order::PAYMENT_TYPE['AFTERPAY']:
+                $resp = PaypalFacade::makePayment($order, $data);
 
-            if ($resp && $resp['paypal_link']) {
-                return ['status' => true, 'order' => $order, 'paypal_link' => $resp['paypal_link']];
-            }
-
-            return ['status' => false, 'order' => $order, 'paypal_link' => null];
+                break;
+            default:
+                break;
         }
 
         return ['status' => false, 'order' => $order, 'paypal_link' => null];

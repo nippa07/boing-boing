@@ -14,7 +14,7 @@
     <meta name="description" content="Boing-Boing">
     <!-- Favicons -->
     <title>Boing-Boing</title>
-
+    <link rel="icon" href="{{asset('assets/img/favicon.webp')}}" type="image/x-icon" />
 
     @include('PublicArea.includes.css')
 </head>

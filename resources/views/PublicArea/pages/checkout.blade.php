@@ -383,16 +383,24 @@
     $('.payment_type').on('click', function () {
         payment_type = this.value;
 
-        if (payment_type == "{{\App\Models\Order::PAYMENT_TYPE['PAYPAL']}}") {
-            $('#paypal_content').removeClass('d-none');
-            $('#stripe_content').addClass('d-none');
-            validateStripe(false);
-
-        } else {
-            $('#stripe_content').removeClass('d-none');
-            $('#paypal_content').addClass('d-none');
-
-            validateStripe(true);
+        switch (payment_type) {
+            case "{{\App\Models\Order::PAYMENT_TYPE['PAYPAL']}}":
+                $('#paypal_content').removeClass('d-none');
+                $('#stripe_content').addClass('d-none');
+                validateStripe(false);
+                break;
+            case "{{\App\Models\Order::PAYMENT_TYPE['STRIPE']}}":
+                $('#stripe_content').removeClass('d-none');
+                $('#paypal_content').addClass('d-none');
+                validateStripe(true);
+                break;
+            case "{{\App\Models\Order::PAYMENT_TYPE['AFTERPAY']}}":
+                $('#stripe_content').removeClass('d-none');
+                $('#paypal_content').addClass('d-none');
+                validateStripe(false);
+                break;
+            default:
+                break;
         }
     });
 
