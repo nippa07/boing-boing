@@ -89,6 +89,7 @@ class QuoteController extends Controller
     public function pdfDownload($id)
     {
         $response['order'] = OrderFacade::get($id);
+        $response['states'] = CountryState::getStates("AU");
 
         $pdf = PDF::loadView('PublicArea.pages.order_pdf', $response);
 
@@ -98,6 +99,7 @@ class QuoteController extends Controller
     public function pdfPrint($id)
     {
         $response['order'] = OrderFacade::get($id);
+        $response['states'] = CountryState::getStates("AU");
 
         $pdf = PDF::loadView('PublicArea.pages.order_pdf', $response);
 

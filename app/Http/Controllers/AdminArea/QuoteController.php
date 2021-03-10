@@ -56,7 +56,11 @@ class QuoteController extends ParentController
     {
         QuoteFacade::updateQuote($id, $request->all());
 
-        return redirect(route('admin.offer.quote.all'))->with('alert-success', "Offer Quote Updated Successfully!");
+        if ($request->resend) {
+            return redirect(route('admin.offer.quote.all'))->with('alert-success', "Offer Quote Updated and Mail Sent Successfully!");
+        } else {
+            return redirect(route('admin.offer.quote.all'))->with('alert-success', "Offer Quote Updated Successfully!");
+        }
     }
 
     public function delete($id)
