@@ -87,7 +87,9 @@ class QuoteService
 
         QuoteItemFacade::updateQuoteItem($quote, $data);
 
-        MailFacade::sendQuoteMail($quote);
+        if ($data['resend']) {
+            MailFacade::sendQuoteMail($quote);
+        }
     }
 
     public function make($data)

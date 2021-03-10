@@ -439,9 +439,28 @@
                                             <p>
                                                 Name - {{$order->first_name}}&nbsp;{{$order->last_name}}<br>
                                                 Email - {{$order->email}}<br>
-                                                Phone - {{$order->phone}}
+                                                Phone - {{$order->phone}}<br>
+                                                @if ($order->company)
+                                                Company - {{$order->company}}<br>
+                                                @endif
+                                                @if ($order->address)
+                                                Address - {{$order->address}}<br>
+                                                @endif
+                                                @if ($order->city)
+                                                City - {{$order->city}}<br>
+                                                @endif
+                                                @if ($order->postal_code)
+                                                Postal Code - {{$order->postal_code}}<br>
+                                                @endif
+                                                @if ($order->country)
+                                                Country - Australia<br>
+                                                @endif
+                                                @foreach ($states as $key => $state)
+                                                @if ($order->state && $order->state == $key)
+                                                State - {{$state}}<br>
+                                                @endif
+                                                @endforeach
                                             </p>
-
                                         </div>
                                     </div>
 

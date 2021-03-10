@@ -30,8 +30,9 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-body">
-                <form action="{{ route('admin.offer.quote.update', $quote->id) }}" method="post">
+                <form id="update_quote_form" action="{{ route('admin.offer.quote.update', $quote->id) }}" method="post">
                     @csrf
+                    <input type="hidden" id="resend" name="resend" value="0">
                     <div class="row justify-content-center">
                         <div class="col-lg-6">
                             <div class="form-group">
@@ -247,7 +248,11 @@
                             <hr>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">
-                                    Update and Resend
+                                    Update
+                                </button>
+                                &nbsp;
+                                <button id="resend_btn" type="button" class="btn btn-primary">
+                                    Resend
                                 </button>
                             </div>
                         </div>
@@ -405,6 +410,11 @@
             items--;
         }
     }
+
+    $('#resend_btn').on('click', function () {
+        $('#resend').val(1);
+        $('#update_quote_form').submit();
+    });
 
 </script>
 @endsection
