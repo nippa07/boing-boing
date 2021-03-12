@@ -31,6 +31,13 @@
         <div class="card">
             <div class="card-body">
                 <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label for="name">Sent Date</label>
+                            <input id="sent_date" type="text" name="sent_date"
+                                class="form-control form-control-alternative" value="{{$quote->created_at}}" readonly>
+                        </div>
+                    </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="name">First Name</label>
