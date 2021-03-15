@@ -446,7 +446,8 @@
         for (let i = 1; i <= items; i++) {
             total += parseFloat($('#price_' + i).val() ? $('#price_' + i).val() : 0.00);
         }
-        gst = parseFloat((total * 10 / 100));
+
+        gst = parseFloat(((total + shipping) * 10 / 100));
         g_total = parseFloat(total + gst + shipping);
         $('#total').html("$" +
             (Math.round(total * 100) / 100).toFixed(2));
