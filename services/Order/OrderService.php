@@ -3,9 +3,11 @@
 namespace services\Order;
 
 use App\Models\Order;
+use App\Models\Quote;
 use Illuminate\Http\Request;
 use services\Facade\MailFacade;
 use services\Facade\PaypalFacade;
+use services\Facade\QuoteFacade;
 use services\Facade\StripeFacade;
 use services\Facade\UserFacade;
 
@@ -93,6 +95,7 @@ class OrderService
                 $order->status = Order::STATUS['PAID'];
                 $order->save();
 
+                QuoteFacade::changeStatus($order->quote_id, Quote::STATUS['ORDERED']);
                 MailFacade::sendOrderMail($order);
                 MailFacade::sendInvoiceMail($order);
 
@@ -127,6 +130,7 @@ class OrderService
             $order->status = Order::STATUS['PAID'];
             $order->save();
 
+            QuoteFacade::changeStatus($order->quote_id, Quote::STATUS['ORDERED']);
             MailFacade::sendOrderMail($order);
             MailFacade::sendInvoiceMail($order);
 

@@ -39,7 +39,7 @@
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Status</th>
-                                <th>Created At</th>
+                                <th>Sent At</th>
                                 <th style="width: 10%">Action</th>
                             </tr>
                         </thead>
@@ -54,7 +54,7 @@
                                 <td>
                                     @switch($quote->status)
                                     @case(\App\Models\Quote::STATUS['SENT'])
-                                    <span class="badge badge-primary">Sent</span>
+                                    <span class="badge badge-secondary">Sent</span>
                                     @break
                                     @case(\App\Models\Quote::STATUS['ACCEPTED'])
                                     <span class="badge badge-success">Accepted</span>
@@ -62,8 +62,10 @@
                                     @case(\App\Models\Quote::STATUS['DECLINED'])
                                     <span class="badge badge-danger">Declined</span>
                                     @break
+                                    @case(\App\Models\Quote::STATUS['ORDERED'])
+                                    <span class="badge badge-primary">Ordered</span>
+                                    @break
                                     @default
-
                                     @endswitch
                                 </td>
                                 <td>{{$quote->created_at}}</td>
