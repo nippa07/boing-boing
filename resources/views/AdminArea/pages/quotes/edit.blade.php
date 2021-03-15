@@ -127,7 +127,7 @@
                             <div class="form-group">
                                 <label for="name">Shipping Cost</label>
                                 <input id="shipping_amount" type="number" min="0" name="shipping_amount"
-                                    class="form-control form-control-alternative" step="any"
+                                    class="form-control form-control-alternative" oninput=loadCost() step="any"
                                     value="{{$quote->shipping_amount}}" required>
                             </div>
                         </div>
@@ -215,9 +215,9 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <label for="name">Price</label>
-                                        <input id="price" type="number" name="price[]" step="any"
-                                            class="form-control form-control-alternative" value="{{$item->price}}"
-                                            required>
+                                        <input id="price_{{$key+1}}" type="number" name="price[]" step="any"
+                                            class="form-control form-control-alternative" oninput=loadCost()
+                                            value="{{$item->price}}" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">
@@ -244,7 +244,29 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="col-lg-12 text-center mt-3">
+                        <div class="col-lg-12">
+                            <hr>
+                            <div class="form-group">
+                                <h3> <strong>Cost Summary</strong></h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <h5>
+                                    <strong>Total:</strong>&nbsp;<span id="total">$0.00</span>
+                                </h5>
+                                <h5>
+                                    <strong>Shipping:</strong>&nbsp;<span id="shipping">$0.00</span>
+                                </h5>
+                                <h5>
+                                    <strong>GST:</strong>&nbsp;<span id="gst">$0.00</span>
+                                </h5>
+                                <h5>
+                                    <strong>Grand Total:</strong>&nbsp;<span id="g_total">$0.00</span>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 text-center">
                             <hr>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success">
@@ -299,6 +321,7 @@
             theme: "bootstrap"
         });
         getStates();
+        loadCost();
     });
 
     function getStates() {
@@ -388,7 +411,8 @@
             '<div class="col-lg-6">' +
             '<div class="form-group">' +
             '<label for="name">Price</label>' +
-            '<input id="price" type="number" name="price[]" min="0" class="form-control form-control-alternative" step="any" required>' +
+            '<input id="price_' + items +
+            '" type="number" name="price[]" min="0" class="form-control form-control-alternative" oninput=loadCost() step="any" required>' +
             '</div>' +
             '</div>' +
             '</div>' +
@@ -415,6 +439,25 @@
         $('#resend').val(1);
         $('#update_quote_form').submit();
     });
+
+    function loadCost() {
+        var total = parseFloat(0.00);
+        var g_total = parseFloat(0.00);
+        var gst = parseFloat(0.00);
+        var shipping = parseFloat($('#shipping_amount').val() ? $('#shipping_amount').val() : 0.00);
+        for (let i = 1; i <= items; i++) {
+            total += parseFloat($('#price_' + i).val() ? $('#price_' + i).val() : 0.00);
+        }
+        gst = parseFloat((total * 10 / 100));
+        g_total = parseFloat(total + gst + shipping);
+        $('#total').html("$" +
+            (Math.round(total * 100) / 100).toFixed(2));
+        $('#shipping').html("$" + (Math.round(shipping * 100) /
+            100).toFixed(2));
+        $('#gst').html("$" + (Math.round(gst * 100) / 100).toFixed(2));
+        $('#g_total').html("$" +
+            (Math.round(g_total * 100) / 100).toFixed(2));
+    }
 
 </script>
 @endsection

@@ -213,7 +213,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="name">Price</label>
-                            <input id="price" type="number" name="price[]" step="any"
+                            <input id="price_{{$key+1}}" type="number" name="price[]" step="any"
                                 class="form-control form-control-alternative" value="{{$item->price}}" readonly>
                         </div>
                     </div>
@@ -225,6 +225,36 @@
                         </div>
                     </div>
                     @endforeach
+                    <div class="col-lg-12">
+                        <hr>
+                        <div class="form-group">
+                            <h3> <strong>Cost Summary</strong></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <h5>
+                                <strong>Total:</strong>&nbsp;<span id="total">$0.00</span>
+                            </h5>
+                            <h5>
+                                <strong>Shipping:</strong>&nbsp;<span id="shipping">$0.00</span>
+                            </h5>
+                            <h5>
+                                <strong>GST:</strong>&nbsp;<span id="gst">$0.00</span>
+                            </h5>
+                            <h5>
+                                <strong>Grand Total:</strong>&nbsp;<span id="g_total">$0.00</span>
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 text-center">
+                        <hr>
+                        <div class="form-group">
+                            <a class="btn btn-success" href="{{route('admin.offer.quote.send.mail', $quote->id)}}">
+                                Resend Quote
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -247,6 +277,8 @@
 
 @section('js')
 <script>
+    var items = "{{count($quote->quote_item)}}";
+
     $(document).ready(function () {
         $('#country').select2({
             placeholder: "Select Country",
@@ -265,6 +297,7 @@
             theme: "bootstrap"
         });
         getStates();
+        loadCost();
     });
 
     function getStates() {
@@ -287,6 +320,25 @@
                 $('#state').html(html);
             }
         });
+    }
+
+    function loadCost() {
+        var total = parseFloat(0.00);
+        var g_total = parseFloat(0.00);
+        var gst = parseFloat(0.00);
+        var shipping = parseFloat($('#shipping_amount').val() ? $('#shipping_amount').val() : 0.00);
+        for (let i = 1; i <= items; i++) {
+            total += parseFloat($('#price_' + i).val() ? $('#price_' + i).val() : 0.00);
+        }
+        gst = parseFloat((total * 10 / 100));
+        g_total = parseFloat(total + gst + shipping);
+        $('#total').html("$" +
+            (Math.round(total * 100) / 100).toFixed(2));
+        $('#shipping').html("$" + (Math.round(shipping * 100) /
+            100).toFixed(2));
+        $('#gst').html("$" + (Math.round(gst * 100) / 100).toFixed(2));
+        $('#g_total').html("$" +
+            (Math.round(g_total * 100) / 100).toFixed(2));
     }
 
 </script>
