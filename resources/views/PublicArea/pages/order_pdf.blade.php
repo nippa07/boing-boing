@@ -579,6 +579,40 @@
                                                             @break
                                                             @default
                                                             @endswitch
+                                                            <br>
+                                                            Finishing: @switch($item->finishing)
+                                                            @case(\App\Models\QuoteItem::FINISHING['SHEETS'])
+                                                            Sheets
+                                                            @break
+                                                            @case(\App\Models\QuoteItem::FINISHING['INDIVIDUALS'])
+                                                            Individuals
+                                                            @break
+                                                            @default
+                                                            @endswitch
+                                                            <br>
+                                                            Type of Vinyl:
+                                                            @switch($item->vinyl_type)
+                                                            @case(\App\Models\QuoteItem::VINYL_TYPE['GLOSS'])
+                                                            Gloss
+                                                            @break
+                                                            @case(\App\Models\QuoteItem::VINYL_TYPE['MATTE'])
+                                                            Matte
+                                                            @break
+                                                            @default
+                                                            @endswitch
+                                                            <br>
+                                                            Sticker Size: {{$item->sticker_size}}
+                                                            <br>
+                                                            Corners:
+                                                            @switch($item->corners)
+                                                            @case(\App\Models\QuoteItem::CORNERS['SQUARE'])
+                                                            Square
+                                                            @break
+                                                            @case(\App\Models\QuoteItem::CORNERS['ROUNDED'])
+                                                            Rounded
+                                                            @break
+                                                            @default
+                                                            @endswitch
                                                         </td>
                                                         <td>
                                                             {{$item->quantity}}

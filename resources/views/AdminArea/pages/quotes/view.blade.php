@@ -217,6 +217,61 @@
                                 class="form-control form-control-alternative" value="{{$item->price}}" readonly>
                         </div>
                     </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="name">Finishing</label>
+                            <select class="form-control" name="finishing[]" id="finishing" disabled>
+                                <option></option>
+                                <option value="{{\App\Models\QuoteItem::FINISHING['SHEETS']}}"
+                                    {{$item->finishing == \App\Models\QuoteItem::FINISHING['SHEETS'] ? 'selected':''}}>
+                                    Sheets
+                                </option>
+                                <option value="{{\App\Models\QuoteItem::FINISHING['INDIVIDUALS']}}"
+                                    {{$item->finishing == \App\Models\QuoteItem::FINISHING['INDIVIDUALS'] ? 'selected':''}}>
+                                    Individuals
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="name">Type Of Vinyl</label>
+                            <select class="form-control" name="vinyl_type[]" id="vinyl_type" disabled>
+                                <option></option>
+                                <option value="{{\App\Models\QuoteItem::VINYL_TYPE['GLOSS']}}"
+                                    {{$item->vinyl_type == \App\Models\QuoteItem::VINYL_TYPE['GLOSS'] ? 'selected':''}}>
+                                    Gloss
+                                </option>
+                                <option value="{{\App\Models\QuoteItem::VINYL_TYPE['MATTE']}}"
+                                    {{$item->vinyl_type == \App\Models\QuoteItem::VINYL_TYPE['MATTE'] ? 'selected':''}}>
+                                    Matte
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="name">Sticker Size</label>
+                            <input id="sticker_size" type="text" name="sticker_size[]" value="{{$item->sticker_size}}"
+                                class="form-control form-control-alternative" readonly>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="name">Corners</label>
+                            <select class="form-control" name="corners[]" id="corners" disabled>
+                                <option></option>
+                                <option value="{{\App\Models\QuoteItem::CORNERS['SQUARE']}}"
+                                    {{$item->corners == \App\Models\QuoteItem::CORNERS['SQUARE'] ? 'selected':''}}>
+                                    Square
+                                </option>
+                                <option value="{{\App\Models\QuoteItem::CORNERS['ROUNDED']}}"
+                                    {{$item->corners == \App\Models\QuoteItem::CORNERS['ROUNDED'] ? 'selected':''}}>
+                                    Rounded
+                                </option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label for="name">Description</label>

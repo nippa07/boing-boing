@@ -69,6 +69,10 @@ class QuoteItemService
             $data['description'] = $form_data['description'][$i] ? $form_data['description'][$i] : '';
             $data['type'] = $form_data['type'][$i];
             $data['t_time'] = $form_data['t_time'][$i];
+            $data['finishing'] = $form_data['finishing'][$i];
+            $data['vinyl_type'] = $form_data['vinyl_type'][$i];
+            $data['sticker_size'] = $form_data['sticker_size'][$i];
+            $data['corners'] = $form_data['corners'][$i];
 
             $this->create($data);
         }
