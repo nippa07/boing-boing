@@ -253,7 +253,8 @@
                                                                 <p
                                                                     style="font-size: 14px; line-height: 140%; text-align: center;">
                                                                     Order for Quote Number
-                                                                    <strong>{{$order->quote->quote_number}}</strong> was
+                                                                    <strong>{{$order->quote ? $order->quote->quote_number : ''}}</strong>
+                                                                    was
                                                                     placed by the customer.
                                                                 </p>
                                                             </div>
@@ -377,7 +378,7 @@
                                                                 <span style="padding-left:50px;display:inline;color:#444444;font-family:arial
                                                                     black,avant garde,arial;font-size:16px"
                                                                     class="v-padding">
-                                                                    {{$order->quote->quote_number}}
+                                                                    {{$order->quote ? $order->quote->quote_number : ''}}
                                                                 </span>
 
                                                                 <!--[if (mso)|(IE)]></td><![endif]-->

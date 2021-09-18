@@ -257,7 +257,7 @@
                                                                     <strong><span
                                                                             style="font-size: 24px; line-height: 33.6px;">
                                                                             Your invoice for order
-                                                                            {{$order->quote->quote_number}}
+                                                                            {{$order->quote? $order->quote->quote_number:''}}
                                                                         </span>
                                                                     </strong>
                                                                 </p>
@@ -437,7 +437,7 @@
                                                                 <span style="padding-left:50px;display:inline;color:#444444;font-family:arial
                                                                     black,avant garde,arial;font-size:16px"
                                                                     class="v-padding">
-                                                                    {{$order->quote->quote_number}}
+                                                                    {{$order->quote? $order->quote->quote_number:''}}
                                                                 </span>
 
                                                                 <!--[if (mso)|(IE)]></td><![endif]-->
@@ -630,6 +630,7 @@
                                                                         @php
                                                                         $item_total = [];
                                                                         @endphp
+                                                                        @if ($order->quote)
                                                                         @foreach ($order->quote->quote_item as $key =>
                                                                         $item)
                                                                         @php
@@ -724,12 +725,14 @@
                                                                             </td>
                                                                         </tr>
                                                                         @endforeach
+                                                                        @endif
+
                                                                         <tr class="item_tr2">
                                                                             <td colspan="4" class="item_td">
                                                                                 Shipping:
                                                                             </td>
                                                                             <td style="text-align: center">
-                                                                                ${{number_format($order->quote->shipping_amount, 2)}}
+                                                                                ${{$order->quote ? number_format($order->quote->shipping_amount, 2) : 0}}
                                                                             </td>
                                                                         </tr>
                                                                         <tr class="item_tr2">
@@ -737,7 +740,7 @@
                                                                                 Sub-Total:
                                                                             </td>
                                                                             <td style="text-align: center">
-                                                                                ${{number_format(array_sum($item_total) + $order->quote->shipping_amount, 2)}}
+                                                                                ${{$order->quote ? number_format(array_sum($item_total) + $order->quote->shipping_amount, 2) : 0}}
                                                                             </td>
                                                                         </tr>
                                                                         <tr class="item_tr2">
@@ -745,7 +748,7 @@
                                                                                 GST:
                                                                             </td>
                                                                             <td style="text-align: center">
-                                                                                ${{number_format((array_sum($item_total) + $order->quote->shipping_amount) * (10/100), 2)}}
+                                                                                ${{$order->quote ? number_format((array_sum($item_total) + $order->quote->shipping_amount) * (10/100), 2) : 0}}
                                                                             </td>
                                                                         </tr>
                                                                         <tr class="item_tr2">
@@ -753,7 +756,7 @@
                                                                                 Total:
                                                                             </td>
                                                                             <td style="text-align: center">
-                                                                                ${{number_format(array_sum($item_total) + $order->quote->shipping_amount + (( array_sum($item_total)+ $order->quote->shipping_amount ) * (10/100)), 2)}}
+                                                                                ${{$order->quote ? number_format(array_sum($item_total) + $order->quote->shipping_amount + (( array_sum($item_total)+ $order->quote->shipping_amount ) * (10/100)), 2) : 0}}
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>

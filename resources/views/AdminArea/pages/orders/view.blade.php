@@ -47,8 +47,8 @@
                         <div class="form-group">
                             <label for="name">Order Number</label>
                             <input id="first_name" type="text" name="first_name"
-                                class="form-control form-control-alternative" value="{{$order->quote->quote_number}}"
-                                readonly>
+                                class="form-control form-control-alternative"
+                                value="{{$order->quote? $order->quote->quote_number:''}}" readonly>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -139,6 +139,7 @@
                             <h3> <strong>Items</strong></h3>
                         </div>
                     </div>
+                    @if ($order->quote)
                     @foreach ($order->quote->quote_item as $key => $item)
                     <div class="col-lg-6">
                         <div class="form-group">
@@ -224,6 +225,7 @@
                         </div>
                     </div>
                     @endforeach
+                    @endif
                 </div>
             </div>
         </div>

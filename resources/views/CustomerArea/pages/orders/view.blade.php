@@ -131,6 +131,7 @@
                             <h3> <strong>Items</strong></h3>
                         </div>
                     </div>
+                    @if ($order->quote)
                     @foreach ($order->quote->quote_item as $key => $item)
                     <div class="col-lg-12">
                         <div class="form-group">
@@ -162,6 +163,7 @@
                         </div>
                     </div>
                     @endforeach
+                    @endif
                 </div>
             </div>
         </div>

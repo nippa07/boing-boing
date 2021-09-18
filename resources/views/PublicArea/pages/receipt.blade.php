@@ -23,7 +23,7 @@
                                             Invoice Number:
                                         </th>
                                         <td>
-                                            {{$order->quote->quote_number}}
+                                            {{$order->quote ? $order->quote->quote_number : ''}}
                                         </td>
                                     </tr>
                                     <tr>
