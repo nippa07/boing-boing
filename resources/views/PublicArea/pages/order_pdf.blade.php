@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order #{{$order->quote->quote_number}}</title>
+    <title>Order #{{$order->quote ? $order->quote->quote_number : ''}}</title>
 
 </head>
 <style>
@@ -424,7 +424,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="invoice-title">
-                                        <h4 class="float-right font-size-16">Order #{{$order->quote->quote_number}}</h4>
+                                        <h4 class="float-right font-size-16">Order
+                                            #{{$order->quote ? $order->quote->quote_number : ''}}</h4>
 
                                         <div class="mb-4">
                                             {{-- <img src="#" alt="logo" height="20"/> --}}
@@ -476,7 +477,7 @@
                                             </div>
                                             <div>
                                                 <h5 class="font-size-16" style="font-size:13px;margin-bottom: 0px">
-                                                    Order Number - #{{$order->quote->quote_number}}
+                                                    Order Number - #{{$order->quote ? $order->quote->quote_number : ''}}
                                                 </h5>
                                             </div>
                                             <div>
@@ -528,6 +529,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @if ($order->quote)
                                                     @foreach ($order->quote->quote_item as $key => $item)
                                                     @php
                                                     $item_total[$key] = ($item->price);
@@ -622,10 +624,15 @@
                                                         </td>
                                                     </tr>
                                                     @endforeach
+                                                    @endif
                                                     @php
+                                                    if ($order->quote) {
                                                     $total = array_sum($item_total) + $order->quote->shipping_amount +
                                                     ((array_sum($item_total) +
                                                     $order->quote->shipping_amount) * (10/100));
+                                                    }else{
+                                                    $total = 0;
+                                                    }
                                                     @endphp
                                                     <tr>
                                                         <td></td>
@@ -634,7 +641,7 @@
                                                             Shipping:
                                                         </th>
                                                         <td class="text-right" style="width: 120px; text-align: right;">
-                                                            ${{number_format($order->quote->shipping_amount, 2)}}
+                                                            ${{$order->quote ? number_format($order->quote->shipping_amount, 2) : 0}}
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -644,7 +651,7 @@
                                                             Sub-Total:
                                                         </th>
                                                         <td class="text-right" style="width: 120px; text-align: right;">
-                                                            ${{number_format(array_sum($item_total) + $order->quote->shipping_amount, 2)}}
+                                                            ${{$order->quote ? number_format(array_sum($item_total) + $order->quote->shipping_amount, 2) : 0}}
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -654,7 +661,7 @@
                                                             GST:
                                                         </th>
                                                         <td class="text-right" style="width: 120px; text-align: right;">
-                                                            ${{number_format((array_sum($item_total) + $order->quote->shipping_amount) * (10/100), 2)}}
+                                                            ${{$order->quote ? number_format((array_sum($item_total) + $order->quote->shipping_amount) * (10/100), 2) : 0}}
                                                         </td>
                                                     </tr>
                                                     <tr>
