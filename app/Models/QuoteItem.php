@@ -13,7 +13,7 @@ class QuoteItem extends Model
     const TURNAROUND_TIME = ['1_2_DAYS' => 1, '2_3_DAYS' => 2, '3_5_DAYS' => 3, '5_7_DAYS' => 4];
     const FINISHING = ['SHEETS' => 1, 'INDIVIDUALS' => 2];
     const VINYL_TYPE = ['GLOSS' => 1, 'MATTE' => 2];
-    const CORNERS = ['SQUARE' => 1, 'ROUNDED' => 2];
+    const CORNERS = ['NONE' => 0, 'SQUARE' => 1, 'ROUNDED' => 2, 'CUSTOM_SHAPE' => 3];
 
     /**
      * The attributes that are mass assignable.

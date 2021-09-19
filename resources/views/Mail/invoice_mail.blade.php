@@ -708,11 +708,17 @@
                                                                                 <br>
                                                                                 Corners:
                                                                                 @switch($item->corners)
+                                                                                @case(\App\Models\QuoteItem::CORNERS['NONE'])
+                                                                                None
+                                                                                @break
                                                                                 @case(\App\Models\QuoteItem::CORNERS['SQUARE'])
                                                                                 Square
                                                                                 @break
                                                                                 @case(\App\Models\QuoteItem::CORNERS['ROUNDED'])
                                                                                 Rounded
+                                                                                @break
+                                                                                @case(\App\Models\QuoteItem::CORNERS['CUSTOM_SHAPE'])
+                                                                                Custom Shape
                                                                                 @break
                                                                                 @default
                                                                                 @endswitch

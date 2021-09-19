@@ -241,11 +241,17 @@
                                 <label for="name">Corners</label>
                                 <select class="form-control" name="corners[]" id="corners" required>
                                     <option></option>
+                                    <option value="{{\App\Models\QuoteItem::CORNERS['NONE']}}">
+                                        None
+                                    </option>
                                     <option value="{{\App\Models\QuoteItem::CORNERS['SQUARE']}}">
                                         Square
                                     </option>
                                     <option value="{{\App\Models\QuoteItem::CORNERS['ROUNDED']}}">
                                         Rounded
+                                    </option>
+                                    <option value="{{\App\Models\QuoteItem::CORNERS['CUSTOM_SHAPE']}}">
+                                        Custom Shape
                                     </option>
                                 </select>
                             </div>
@@ -489,11 +495,17 @@
             '<label for="name">Corners</label>' +
             '<select class="form-control" name="corners[]" id="corners" required>' +
             '<option></option>' +
+            '<option value="' + " {{\App\Models\QuoteItem::CORNERS['NONE']}}" + '">' +
+            'None' +
+            '</option>' +
             '<option value="' + "{{\App\Models\QuoteItem::CORNERS['SQUARE']}}" + '">' +
             'Square' +
             '</option>' +
             '<option value="' + "{{\App\Models\QuoteItem::CORNERS['ROUNDED']}}" + '">' +
             'Rounded' +
+            '</option>' +
+            '<option value="' + " {{\App\Models\QuoteItem::CORNERS['CUSTOM_SHAPE']}}" + '">' +
+            'Custom Shape' +
             '</option>' +
             '</select>' +
             '</div>' +

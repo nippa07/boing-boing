@@ -264,6 +264,10 @@
                                         <label for="name">Corners</label>
                                         <select class="form-control" name="corners[]" id="corners" required>
                                             <option></option>
+                                            <option value="{{\App\Models\QuoteItem::CORNERS['NONE']}}"
+                                                {{$item->corners == \App\Models\QuoteItem::CORNERS['NONE'] ? 'selected':''}}>
+                                                None
+                                            </option>
                                             <option value="{{\App\Models\QuoteItem::CORNERS['SQUARE']}}"
                                                 {{$item->corners == \App\Models\QuoteItem::CORNERS['SQUARE'] ? 'selected':''}}>
                                                 Square
@@ -271,6 +275,10 @@
                                             <option value="{{\App\Models\QuoteItem::CORNERS['ROUNDED']}}"
                                                 {{$item->corners == \App\Models\QuoteItem::CORNERS['ROUNDED'] ? 'selected':''}}>
                                                 Rounded
+                                            </option>
+                                            <option value="{{\App\Models\QuoteItem::CORNERS['CUSTOM_SHAPE']}}"
+                                                {{$item->corners == \App\Models\QuoteItem::CORNERS['CUSTOM_SHAPE'] ? 'selected':''}}>
+                                                Custom Shape
                                             </option>
                                         </select>
                                     </div>
@@ -410,64 +418,127 @@
             '<label for="name">Sticker Type</label>' +
             '<select class="form-control" name="type[]" id="type" required>' +
             '<option></option>' +
-            '<option value="' + " {{\App\Models\QuoteItem::TYPE['BUMPER_STICKERS']}}" + '">' +
-            'Bumper Stickers' + '</option>' + '<option value="' +
-            "{{\App\Models\QuoteItem::TYPE['VINYL_STICKERS']}}" + '">' + 'Vinyl Stickers' +
-            '</option>' + '<option value="' +
-            "{{\App\Models\QuoteItem::TYPE['CLEAR_VINYL_STICKERS']}}" + '">' +
-            'Clear Vinyl Stickers' + '</option>' + '<option value="' +
-            "{{\App\Models\QuoteItem::TYPE['CLEAR_VINYL_STICKERS_WITH_WHITE_INK']}}" + '">' +
-            'Clear Vinyl Stickers With White INK' + '</option>' + '<option value="' +
-            "{{\App\Models\QuoteItem::TYPE['HIGH_TRACK_STICKERS']}}" + '">' + 'High Tack Stickers' +
-            '</option>' + '<option value="' +
-            "{{\App\Models\QuoteItem::TYPE['BLOCKOUT_VINYL_STICKERS']}}" + '">' +
-            'Blockout Vinyl Stickers' + '</option>' + '<option value="' +
-            "{{\App\Models\QuoteItem::TYPE['GOLD_SILVER_VINYL_STICKERS']}}" + '">' +
-            'Gold / Silver Vinyl Stickers' + '</option>' + '</select>' + '</div>' + '</div>' +
-            '<div class="col-lg-6">' + '<div class="form-group">' +
-            '<h6><strong>&nbsp;</strong></h6>' + '<label for="name">Turnaround Time</label>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TYPE['BUMPER_STICKERS']}}" + '">' +
+            'Bumper Stickers' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TYPE['VINYL_STICKERS']}}" + '">' +
+            'Vinyl Stickers' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TYPE['CLEAR_VINYL_STICKERS']}}" + '">' +
+            'Clear Vinyl Stickers' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TYPE['CLEAR_VINYL_STICKERS_WITH_WHITE_INK']}}" + '">' +
+            'Clear Vinyl Stickers With White INK' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TYPE['HIGH_TRACK_STICKERS']}}" + '">' +
+            'High Tack Stickers' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TYPE['BLOCKOUT_VINYL_STICKERS']}}" + '">' +
+            'Blockout Vinyl Stickers' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TYPE['GOLD_SILVER_VINYL_STICKERS']}}" + '">' +
+            'Gold / Silver Vinyl Stickers' +
+            '</option>' +
+            '</select>' +
+            '</div>' +
+            '</div>' +
+            '<div class="col-lg-6">' +
+            '<div class="form-group">' +
+            '<h6><strong>&nbsp;</strong></h6>' +
+            '<label for="name">Turnaround Time</label>' +
             '<select class="form-control" name="t_time[]" id="t_time" required>' +
-            '<option></option>' + '<option value="' +
-            "{{\App\Models\QuoteItem::TURNAROUND_TIME['1_2_DAYS']}}" + '">' + '1-2 Days' +
-            '</option>' + '<option value="' +
-            "{{\App\Models\QuoteItem::TURNAROUND_TIME['2_3_DAYS']}}" + '">' + '2-3 Days' +
-            '</option>' + '<option value="' +
-            "{{\App\Models\QuoteItem::TURNAROUND_TIME['3_5_DAYS']}}" + '">' + '3-5 Days' +
-            '</option>' + '<option value="' +
-            "{{\App\Models\QuoteItem::TURNAROUND_TIME['5_7_DAYS']}}" + '">' + '5-7 Days' +
-            '</option>' + '</select>' + '</div>' + '</div>' + '<div class="col-lg-6">' +
-            '<div class="form-group">' + '<label for="name">Quantity</label>' +
+            '<option></option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TURNAROUND_TIME['1_2_DAYS']}}" + '">' +
+            '1-2 Days' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TURNAROUND_TIME['2_3_DAYS']}}" + '">' +
+            '2-3 Days' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TURNAROUND_TIME['3_5_DAYS']}}" + '">' +
+            '3-5 Days' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::TURNAROUND_TIME['5_7_DAYS']}}" + '">' +
+            '5-7 Days' +
+            '</option>' +
+            '</select>' +
+            '</div>' +
+            '</div>' +
+            '<div class="col-lg-6">' +
+            '<div class="form-group">' +
+            '<label for="name">Quantity</label>' +
             '<input id="quantity" type="number" name="quantity[]" min="1" class="form-control form-control-alternative" required>' +
-            '</div>' + '</div>' + '<div class="col-lg-6">' + '<div class="form-group">' +
-            '<label for="name">Price</label>' + '<input id="price_' + items +
+            '</div>' +
+            '</div>' +
+            '<div class="col-lg-6">' +
+            '<div class="form-group">' +
+            '<label for="name">Price</label>' +
+            '<input id="price_' + items +
             '" type="number" name="price[]" min="0" class="form-control form-control-alternative" oninput=loadCost() step="any" required>' +
-            '</div>' + '</div>' + '<div class="col-lg-6">' + '<div class="form-group">' +
+            '</div>' +
+            '</div>' +
+            '<div class="col-lg-6">' +
+            '<div class="form-group">' +
             '<label for="name">Finishing</label>' +
             '<select class="form-control" name="finishing[]" id="finishing" required>' +
-            '<option></option>' + '<option value="' +
-            "{{\App\Models\QuoteItem::FINISHING['SHEETS']}}" + '">' + 'Sheets' + '</option>' +
+            '<option></option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::FINISHING['SHEETS']}}" + '">' +
+            'Sheets' +
+            '</option>' +
             '<option value="' + "{{\App\Models\QuoteItem::FINISHING['INDIVIDUALS']}}" + '">' +
-            'Individuals' + '</option>' + '</select>' + '</div>' + '</div>' +
-            '<div class="col-lg-6">' + '<div class="form-group">' +
+            'Individuals' +
+            '</option>' +
+            '</select>' +
+            '</div>' +
+            '</div>' +
+            '<div class="col-lg-6">' +
+            '<div class="form-group">' +
             '<label for="name">Type Of Vinyl</label>' +
             '<select class="form-control" name="vinyl_type[]" id="vinyl_type" required>' +
-            '<option></option>' + '<option value="' +
-            "{{\App\Models\QuoteItem::VINYL_TYPE['GLOSS']}}" + '">' + 'Gloss' + '</option>' +
-            '<option value="' + "{{\App\Models\QuoteItem::VINYL_TYPE['MATTE']}}" + '">' + 'Matte' +
-            '</option>' + '</select>' + '</div>' + '</div>' + '<div class="col-lg-6">' +
-            '<div class="form-group">' + '<label for="name">Sticker Size</label>' +
+            '<option></option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::VINYL_TYPE['GLOSS']}}" + '">' +
+            'Gloss' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::VINYL_TYPE['MATTE']}}" + '">' +
+            'Matte' +
+            '</option>' +
+            '</select>' +
+            '</div>' +
+            '</div>' +
+            '<div class="col-lg-6">' +
+            '<div class="form-group">' +
+            '<label for="name">Sticker Size</label>' +
             '<input id="sticker_size" type="text" name="sticker_size[]"' +
-            'class="form-control form-control-alternative" required>' + '</div>' + '</div>' +
-            '<div class="col-lg-6">' + '<div class="form-group">' +
+            'class="form-control form-control-alternative" required>' +
+            '</div>' +
+            '</div>' +
+            '<div class="col-lg-6">' +
+            '<div class="form-group">' +
             '<label for="name">Corners</label>' +
             '<select class="form-control" name="corners[]" id="corners" required>' +
-            '<option></option>' + '<option value="' +
-            "{{\App\Models\QuoteItem::CORNERS['SQUARE']}}" + '">' + 'Square' + '</option>' +
-            '<option value="' + "{{\App\Models\QuoteItem::CORNERS['ROUNDED']}}" + '">' + 'Rounded' +
-            '</option>' + '</select>' + '</div>' + '</div>' + '</div>' + '<div class="col-lg-12">' +
-            '<div class="form-group">' + '<label for="name">Description</label>' +
-            '<textarea class="form-control" name="description[]" rows="3"></textarea>' + '</div>' +
-            '</div>' + '</div>';
+            '<option></option>' +
+            '<option value="' + " {{\App\Models\QuoteItem::CORNERS['NONE']}}" + '">' +
+            'None' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::CORNERS['SQUARE']}}" + '">' +
+            'Square' +
+            '</option>' +
+            '<option value="' + "{{\App\Models\QuoteItem::CORNERS['ROUNDED']}}" + '">' +
+            'Rounded' +
+            '</option>' +
+            '<option value="' + " {{\App\Models\QuoteItem::CORNERS['CUSTOM_SHAPE']}}" + '">' +
+            'Custom Shape' +
+            '</option>' +
+            '</select>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '<div class="col-lg-12">' +
+            '<div class="form-group">' +
+            '<label for="name">Description</label>' +
+            '<textarea class="form-control" name="description[]" rows="3"></textarea>' +
+            '</div>' +
+            '</div>' +
+            '</div>';
 
         $('#extra_items').append(html);
     }
