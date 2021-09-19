@@ -641,7 +641,7 @@
                                                             Shipping:
                                                         </th>
                                                         <td class="text-right" style="width: 120px; text-align: right;">
-                                                            ${{$order->quote ? number_format($order->quote->shipping_amount, 2) : 0}}
+                                                            FREE EXPRESS SHIPPING
                                                         </td>
                                                     </tr>
                                                     <tr>
