@@ -128,10 +128,9 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label for="name">Shipping Cost</label>
-                            <input id="shipping_amount" type="number" min="0" name="shipping_amount"
-                                class="form-control form-control-alternative" step="any"
-                                value="{{$quote->shipping_amount}}" readonly>
+                            <span><strong>FREE EXPRESS SHIPPING</strong></span>
+                            <input id="shipping_amount" type="hidden" name="shipping_amount"
+                                class="form-control form-control-alternative" value="0" readonly>
                         </div>
                     </div>
                     <div class="col-lg-12 mt-3">

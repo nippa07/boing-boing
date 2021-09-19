@@ -37,7 +37,8 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
+                                <th style="max-width: 300px;">Name</th>
+                                <th>Order #</th>
                                 <th>Status</th>
                                 <th>Sent At</th>
                                 <th style="width: 10%">Action</th>
@@ -50,6 +51,13 @@
                                 <td>
                                     <span>{{$quote->first_name}}&nbsp;{{$quote->last_name}}</span><br>
                                     <span class="badge badge-dark">{{$quote->email}}</span>
+                                </td>
+                                <td>
+                                    @if ($quote->order)
+                                    <a href="{{route('admin.orders.view', $quote->order->id)}}" target="blank">
+                                        #{{$quote->quote_number}}
+                                    </a>
+                                    @endif
                                 </td>
                                 <td>
                                     @switch($quote->status)

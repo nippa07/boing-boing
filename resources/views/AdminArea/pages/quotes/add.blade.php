@@ -124,13 +124,12 @@
                         </div>
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label for="name">Shipping Cost</label>
-                                <input id="shipping_amount" type="number" min="0" name="shipping_amount"
-                                    class="form-control form-control-alternative" oninput=loadCost() step="any"
-                                    required>
+                                <span><strong>FREE EXPRESS SHIPPING</strong></span>
+                                <input id="shipping_amount" type="hidden" name="shipping_amount"
+                                    class="form-control form-control-alternative" value="0" required>
                             </div>
                         </div>
-                        <div class="col-lg-12 mt-3">
+                        <div class="col-lg-12 mt-2">
                             <hr>
                             <div class="form-group">
                                 <h3> <strong>Add Items</strong></h3>

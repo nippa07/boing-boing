@@ -121,7 +121,7 @@
                                     Shipping:
                                 </th>
                                 <td>
-                                    ${{number_format($quote->shipping_amount, 2)}}
+                                    FREE EXPRESS SHIPPING
                                 </td>
                             </tr>
                             <tr>
