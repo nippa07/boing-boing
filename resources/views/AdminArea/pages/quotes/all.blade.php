@@ -57,6 +57,8 @@
                                     <a href="{{route('admin.orders.view', $quote->order->id)}}" target="blank">
                                         #{{$quote->quote_number}}
                                     </a>
+                                    @else
+                                    #{{$quote->quote_number}}
                                     @endif
                                 </td>
                                 <td>
