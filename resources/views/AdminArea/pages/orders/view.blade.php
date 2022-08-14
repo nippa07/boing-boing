@@ -226,6 +226,34 @@
                     </div>
                     @endforeach
                     @endif
+                    <div class="col-lg-12 mt-3">
+                        <hr>
+                        <div class="form-group">
+                            <h3> <strong>Discounts</strong></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="name">Discount Percentage</label>
+                            <select class="form-control" name="discount" id="discount" disabled>
+                                <option></option>
+                                <option value="20" {{$order->quote->discount == 20 ? 'selected':''}}>
+                                    20%
+                                </option>
+                                <option value="25" {{$order->quote->discount == 25 ? 'selected':''}}>
+                                    25%
+                                </option>
+                                <option value="30" {{$order->quote->discount == 30 ? 'selected':''}}>
+                                    30%
+                                </option>
+                                <option value="50" {{$order->quote->discount == 50 ? 'selected':''}}>
+                                    50%
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                    </div>
                 </div>
             </div>
         </div>

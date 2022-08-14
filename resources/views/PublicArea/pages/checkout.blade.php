@@ -118,8 +118,8 @@
                             </tr>
                             @endforeach
                             @php
-                            $total = array_sum($item_total) + $quote->shipping_amount + ((array_sum($item_total) +
-                            $quote->shipping_amount) * (10/100));
+
+                            $total = (array_sum($item_total) + $quote->shipping_amount)-((array_sum($item_total) + $quote->shipping_amount)*($quote->discount/100)) + (((array_sum($item_total) + $quote->shipping_amount)-((array_sum($item_total) + $quote->shipping_amount)*($quote->discount/100))) * (10/100));
                             @endphp
                             <tr>
                                 <td></td>
@@ -136,7 +136,7 @@
                                     Sub-Total:
                                 </th>
                                 <td>
-                                    ${{number_format(array_sum($item_total) + $quote->shipping_amount, 2)}}
+                                    ${{number_format((array_sum($item_total) + $quote->shipping_amount)-((array_sum($item_total) + $quote->shipping_amount)*($quote->discount/100)), 2)}}
                                 </td>
                             </tr>
                             <tr>
@@ -145,7 +145,7 @@
                                     GST:
                                 </th>
                                 <td>
-                                    ${{number_format((array_sum($item_total) + $quote->shipping_amount) * (10/100), 2)}}
+                                    ${{number_format(((array_sum($item_total) + $quote->shipping_amount)-((array_sum($item_total) + $quote->shipping_amount)*($quote->discount/100))) * (10/100), 2)}}
                                 </td>
                             </tr>
                             <tr>
