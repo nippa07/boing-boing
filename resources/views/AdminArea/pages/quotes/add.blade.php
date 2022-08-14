@@ -276,6 +276,34 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="col-lg-12 mt-3">
+                            <hr>
+                            <div class="form-group">
+                                <h3> <strong>Discounts</strong></h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="name">Discount Percentage</label>
+                                <select class="form-control" name="discount" id="discount" onchange=loadCost()>
+                                    <option></option>
+                                    <option value="20">
+                                        20%
+                                    </option>
+                                    <option value="25">
+                                        25%
+                                    </option>
+                                    <option value="30">
+                                        30%
+                                    </option>
+                                    <option value="50">
+                                        50%
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                        </div>
                         <div class="col-lg-12">
                             <hr>
                             <div class="form-group">
@@ -289,6 +317,9 @@
                                 </h5>
                                 <h5>
                                     <strong>Shipping:</strong>&nbsp;<span id="shipping">$0.00</span>
+                                </h5>
+                                <h5>
+                                    <strong>Discounts:</strong>&nbsp;<span id="discounts">0%</span>
                                 </h5>
                                 <h5>
                                     <strong>GST:</strong>&nbsp;<span id="gst">$0.00</span>
@@ -360,6 +391,10 @@
         });
         $('#corners').select2({
             placeholder: "Select Corner",
+            theme: "bootstrap"
+        });
+        $('#discount').select2({
+            placeholder: "Select Discount",
             theme: "bootstrap"
         });
         getStates();
@@ -561,17 +596,19 @@
         var total = parseFloat(0.00);
         var g_total = parseFloat(0.00);
         var gst = parseFloat(0.00);
+        var discount = parseFloat($('#discount').val() ? $('#discount').val() : 0.00);
         var shipping = parseFloat($('#shipping_amount').val() ? $('#shipping_amount').val() : 0.00);
         for (let i = 1; i <= items; i++) {
             total += parseFloat($('#price_' + i).val() ? $('#price_' + i).val() : 0.00);
         }
-
+        total = total - (total * (discount/100))
         gst = parseFloat(((total + shipping) * 10 / 100));
         g_total = parseFloat(total + gst + shipping);
         $('#total').html("$" +
             (Math.round(total * 100) / 100).toFixed(2));
         $('#shipping').html("$" + (Math.round(shipping * 100) /
             100).toFixed(2));
+        $('#discounts').html(discount+"%");
         $('#gst').html("$" + (Math.round(gst * 100) / 100).toFixed(2));
         $('#g_total').html("$" +
             (Math.round(g_total * 100) / 100).toFixed(2));

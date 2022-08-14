@@ -30,7 +30,8 @@ class Quote extends Model
         'postal_code',
         'status',
         'shipping_amount',
-        'quote_request_id'
+        'quote_request_id',
+        'discount'
     ];
 
     public function quote_item()

@@ -79,6 +79,7 @@ Route::prefix('/admin')->namespace('AdminArea')->group(function () {
 
         Route::get('/accept/{id}', 'QuoteController@accept')->name('admin.offer.quote.accept');
         Route::get('/decline/{id}', 'QuoteController@decline')->name('admin.offer.quote.decline');
+        Route::get('/order/{id}', 'QuoteController@order')->name('admin.offer.quote.order');
 
         Route::get('/get/mail', 'QuoteController@getQuoteFromMail')->name('admin.offer.quote.get.mail');
     });

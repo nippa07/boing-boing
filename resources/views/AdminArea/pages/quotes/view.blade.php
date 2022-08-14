@@ -287,6 +287,35 @@
                         </div>
                     </div>
                     @endforeach
+
+                    <div class="col-lg-12 mt-3">
+                        <hr>
+                        <div class="form-group">
+                            <h3> <strong>Discounts</strong></h3>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="name">Discount Percentage</label>
+                            <select class="form-control" name="discount" id="discount" disabled>
+                                <option></option>
+                                <option value="20" {{$quote->discount == 20 ? 'selected':''}}>
+                                    20%
+                                </option>
+                                <option value="25" {{$quote->discount == 25 ? 'selected':''}}>
+                                    25%
+                                </option>
+                                <option value="30" {{$quote->discount == 30 ? 'selected':''}}>
+                                    30%
+                                </option>
+                                <option value="50" {{$quote->discount == 50 ? 'selected':''}}>
+                                    50%
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                    </div>
                     <div class="col-lg-12">
                         <hr>
                         <div class="form-group">
@@ -388,10 +417,12 @@
         var total = parseFloat(0.00);
         var g_total = parseFloat(0.00);
         var gst = parseFloat(0.00);
+        var discount = parseFloat($('#discount').val() ? $('#discount').val() : 0.00);
         var shipping = parseFloat($('#shipping_amount').val() ? $('#shipping_amount').val() : 0.00);
         for (let i = 1; i <= items; i++) {
             total += parseFloat($('#price_' + i).val() ? $('#price_' + i).val() : 0.00);
         }
+        total = total - (total * (discount/100))
         gst = parseFloat(((total + shipping) * 10 / 100));
         g_total = parseFloat(total + gst + shipping);
         $('#total').html("$" +

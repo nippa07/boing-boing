@@ -752,10 +752,18 @@
                                                                         </tr>
                                                                         <tr class="item_tr2">
                                                                             <td colspan="4" class="item_td">
+                                                                                Discount:
+                                                                            </td>
+                                                                            <td style="text-align: center">
+                                                                                {{number_format($quote->discount, 2)}}%
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr class="item_tr2">
+                                                                            <td colspan="4" class="item_td">
                                                                                 Sub-Total:
                                                                             </td>
                                                                             <td style="text-align: center">
-                                                                                ${{number_format(array_sum($item_total) + $quote->shipping_amount, 2)}}
+                                                                                ${{number_format((array_sum($item_total) + $quote->shipping_amount)-((array_sum($item_total) + $quote->shipping_amount)*($quote->discount/100)), 2)}}
                                                                             </td>
                                                                         </tr>
                                                                         <tr class="item_tr2">
@@ -763,7 +771,7 @@
                                                                                 GST:
                                                                             </td>
                                                                             <td style="text-align: center">
-                                                                                ${{number_format((array_sum($item_total) + $quote->shipping_amount) * (10/100), 2)}}
+                                                                                ${{number_format(((array_sum($item_total) + $quote->shipping_amount)-((array_sum($item_total) + $quote->shipping_amount)*($quote->discount/100))) * (10/100), 2)}}
                                                                             </td>
                                                                         </tr>
                                                                         <tr class="item_tr2">
@@ -771,7 +779,7 @@
                                                                                 Total:
                                                                             </td>
                                                                             <td style="text-align: center">
-                                                                                ${{number_format(array_sum($item_total) + $quote->shipping_amount + (( array_sum($item_total)+ $quote->shipping_amount ) * (10/100)), 2)}}
+                                                                                ${{number_format(((array_sum($item_total) + $quote->shipping_amount)-((array_sum($item_total) + $quote->shipping_amount)*($quote->discount/100))) + (( ((array_sum($item_total) + $quote->shipping_amount)-((array_sum($item_total) + $quote->shipping_amount)*($quote->discount/100))) ) * (10/100)), 2)}}
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>

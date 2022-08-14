@@ -95,4 +95,12 @@ class QuoteController extends ParentController
     {
         return QuoteFacade::getQuoteFromMail($request->email);
     }
+
+    public function order($id)
+    {
+        QuoteFacade::changeStatus($id, Quote::STATUS['ORDERED']);
+        QuoteFacade::makeOrder($id);
+
+        return redirect()->back()->with('alert-success', "Quote Marked As ordered!");
+    }
 }
