@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    const PAYMENT_TYPE = ['PAYPAL' => 1, 'STRIPE' => 2];
+    const PAYMENT_TYPE = ['PAYPAL' => 1, 'STRIPE' => 2, 'DIRECT' => 3];
     const STATUS = ['PLACED' => 1, 'PAID' => 2, 'FAILED' => 3, 'CANCELED' => 4];
     const ADMIN_STATUS = ['COMPLETED' => 1, 'IN_PRODUCTION' => 2];
     /**

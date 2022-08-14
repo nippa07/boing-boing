@@ -116,6 +116,13 @@
                                                 <i class="fa fa-times text-danger"></i>&nbsp;&nbsp;Mark Declined
                                             </a>
                                             @endif
+                                            @if ($quote->status != \App\Models\Quote::STATUS['ORDERED'])
+                                            <div class="dropdown-divider responsive-moblile"></div>
+                                            <a class="dropdown-item"
+                                                href="{{route('admin.offer.quote.order', $quote->id)}}">
+                                                <i class="fa fa-shopping-cart text-info"></i>&nbsp;Mark Ordered
+                                            </a>
+                                            @endif
                                             <div class="dropdown-divider responsive-moblile">
                                             </div>
                                             <a class="dropdown-item {{$quote->order ? 'disabled':'delete-btn'}}"
