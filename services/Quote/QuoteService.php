@@ -99,6 +99,9 @@ class QuoteService
     public function make($data)
     {
         $data['quote_number'] = $this->getQuoteNumber();
+        if ($data['discount'] == null) {
+            $data['discount'] = 0;
+        }
         $quote = $this->create($data);
 
         QuoteItemFacade::make($quote, $data);
