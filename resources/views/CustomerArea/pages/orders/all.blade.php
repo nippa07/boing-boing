@@ -72,7 +72,7 @@
                                     @default
                                     @endswitch
                                 </td>
-                                <td>{{$order->created_at}}</td>
+                                <td>{{\carbon\carbon::parse($order->created_at)->format('d/m/Y')}}</td>
                                 <td class="text-left">
                                     <div class="dropdown">
                                         <a class="btn btn-sm btn-icon-only text-dark" href="#" role="button"

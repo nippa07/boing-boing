@@ -35,7 +35,8 @@
                         <div class="form-group">
                             <label for="name">Sent Date</label>
                             <input id="sent_date" type="text" name="sent_date"
-                                class="form-control form-control-alternative" value="{{$quote->created_at}}" readonly>
+                                class="form-control form-control-alternative"
+                                value="{{\carbon\carbon::parse($quote->created_at)->format('d/m/Y')}}" readonly>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -422,7 +423,7 @@
         for (let i = 1; i <= items; i++) {
             total += parseFloat($('#price_' + i).val() ? $('#price_' + i).val() : 0.00);
         }
-        total = total - (total * (discount/100))
+        total = total - (total * (discount / 100))
         gst = parseFloat(((total + shipping) * 10 / 100));
         g_total = parseFloat(total + gst + shipping);
         $('#total').html("$" +

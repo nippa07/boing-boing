@@ -44,7 +44,8 @@
                                     <span class="badge badge-dark">{{$custom_offer->email}}</span>
                                 </td>
                                 <td>{{$custom_offer->phone}}</td>
-                                <td>{{$custom_offer->created_at}}</td>
+                                <td>{{\carbon\carbon::parse($custom_offer->created_at)->format('d/m/Y')}}
+                                </td>
                                 <td class="text-left">
                                     <div class="dropdown">
                                         <a class="btn btn-sm btn-icon-only text-dark" href="#" role="button"
