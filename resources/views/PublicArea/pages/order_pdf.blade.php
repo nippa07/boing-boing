@@ -633,7 +633,13 @@
                                                     @endif
                                                     @php
                                                     if ($order->quote) {
-                                                    $total = (array_sum($item_total) + $quote->shipping_amount)-((array_sum($item_total) + $quote->shipping_amount)*($quote->discount/100)) + (((array_sum($item_total) + $quote->shipping_amount)-((array_sum($item_total) + $quote->shipping_amount)*($quote->discount/100))) * (10/100));
+                                                    $total = (array_sum($item_total) +
+                                                    $order->quote->shipping_amount)-((array_sum($item_total) +
+                                                    $order->quote->shipping_amount)*($order->quote->discount/100)) +
+                                                    (((array_sum($item_total) +
+                                                    $order->quote->shipping_amount)-((array_sum($item_total) +
+                                                    $order->quote->shipping_amount)*($order->quote->discount/100))) *
+                                                    (10/100));
                                                     }else{
                                                     $total = 0;
                                                     }
@@ -655,7 +661,7 @@
                                                             Sub-Total:
                                                         </th>
                                                         <td class="text-right" style="width: 120px; text-align: right;">
-                                                            ${{$order->quote ? number_format((array_sum($item_total) + $quote->shipping_amount)-((array_sum($item_total) + $quote->shipping_amount)*($quote->discount/100)), 2) : 0}}
+                                                            ${{$order->quote ? number_format((array_sum($item_total) + $order->quote->shipping_amount)-((array_sum($item_total) + $order->quote->shipping_amount)*($order->quote->discount/100)), 2) : 0}}
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -665,7 +671,7 @@
                                                             GST:
                                                         </th>
                                                         <td class="text-right" style="width: 120px; text-align: right;">
-                                                            ${{$order->quote ? number_format(((array_sum($item_total) + $quote->shipping_amount)-((array_sum($item_total) + $quote->shipping_amount)*($quote->discount/100))) * (10/100), 2) : 0}}
+                                                            ${{$order->quote ? number_format(((array_sum($item_total) + $order->quote->shipping_amount)-((array_sum($item_total) + $order->quote->shipping_amount)*($order->quote->discount/100))) * (10/100), 2) : 0}}
                                                         </td>
                                                     </tr>
                                                     <tr>
