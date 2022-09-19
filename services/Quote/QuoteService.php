@@ -86,6 +86,9 @@ class QuoteService
     public function updateQuote($id, $data)
     {
         $quote = $this->get($id);
+        if (!$data['discount']) {
+            $data['discount'] = 0;
+        }
 
         $this->update($quote, $data);
 
